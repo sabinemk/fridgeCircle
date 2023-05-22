@@ -8,6 +8,8 @@ public class FridgeCircleApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FridgeCircleApplication.class, args);
+
+		System.out.println("hei spring");
 	}
 
 }
