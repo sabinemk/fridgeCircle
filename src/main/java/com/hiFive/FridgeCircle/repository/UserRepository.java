@@ -9,7 +9,7 @@ import java.math.BigInteger;
 @Repository
 public interface UserRepository  extends CrudRepository<User, BigInteger> {
 
-    User findByUsernameAndPassword(String userName, String password);
+    User findByUsernameAndPassword(String username, String password);
 
     User findByEmail(String email);
 
