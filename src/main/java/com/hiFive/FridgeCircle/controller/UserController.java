@@ -37,7 +37,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public String displayLoginPage(
             @RequestParam(name = "status", required = false) String status,
             @RequestParam(name = "message", required = false) String message,

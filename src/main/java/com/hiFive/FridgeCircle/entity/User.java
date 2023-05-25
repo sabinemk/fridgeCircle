@@ -12,9 +12,6 @@ import java.math.BigInteger;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@Getter
-@Setter
 
 public class User {
     @Id
