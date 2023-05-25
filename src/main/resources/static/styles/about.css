@@ -1,4 +1,4 @@
-body, h1, h2, h3, h4, h5, h6, p, ul, li {
+.body, h1, h2, h3, h4, h5, h6, p, ul, li {
     margin: 0;
     padding: 0;
 }
@@ -121,22 +121,3 @@ body {
     font-weight: bold;
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.text-section {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.image-section {
-    flex: 1;
-}
-
-.image-section img {
-    max-width: 100%;
-    height: auto;
-}

@@ -1,6 +1,4 @@
-/*
-resetting default style */
-body, h1, h2, h3, h4, h5, h6, p, ul, li {
+.body, h1, h2, h3, h4, h5, h6, p, ul, li {
     margin: 0;
     padding: 0;
 }
@@ -89,36 +87,5 @@ body {
 }
 
 .active .nav-link {
-    font-weight: bold;
-}
-
-.hero {
-    /*
-    img src="img/15-Colored-Eyeliner-Looks-Mobile-bmag.jpg"/
-     */
-    background-image: url("../images/your-image.jpg");
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 24px;
-    margin-bottom: 40px;
-}
-
-.hero a {
-    background-color: #1a853f;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 4px;
-    text-decoration: none;
     font-weight: bold;
 }
