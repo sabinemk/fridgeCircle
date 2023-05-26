@@ -12,35 +12,19 @@
 
 </head>
 <body>
-<div class="NOTSUREYET">
-  <div class="header_section">
-    <div class="container">
-      <nav class="navbar">
-        <div class="navbar-left">
-          <form class="image-upload-form">
-            <input type="file" id="image-upload" name="image-upload">
-            <label for="image-upload"><img src="" alt="there-will-be-a-logo"></label>
-          </form>
-        </div>
-        <div class="navbar-right">
-          <ul class="navbar-list">
-            <li class="nav-item active"><a class="nav-link" href="https://www.fridgecircle.com">Home <span class="sr-only"></span></a></li>
-            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="/recipes">Recipes</a></li>
-            <li class="nav-item"><a class="nav-link" href="thefridge.html">The Fridge</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </div>
+<header th:replace="~{fragments/header :: standard-header}"></header>
+<div class="main">
+
+</div>
 
   <section class="hero">
     <div class="container">
       <h1>Welcome to Fridge Circle!</h1>
       <p>Discover delicious recipes for zero waste cooking</p>
-      <a href="recipes.html" class="btn">Explore Recipes</a>
+      <a href="/recipes" class="btn">Explore Recipes</a>
     </div>
   </section>
-</div>
+
+<footer th:fragment="standard-footer">
 </body>
 </html>

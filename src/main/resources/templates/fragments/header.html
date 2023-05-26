@@ -1,22 +1,29 @@
 <header th:fragment="standard-header">
 
-  <div class="container">
-    <nav class="navbar">
-      <div class="navbar-left">
-        <form class="image-upload-form">
-          <input type="file" id="image-upload" name="image-upload">
-          <label for="image-upload"><img src="" alt="there-will-be-a-logo"></label>
-        </form>
-      </div>
-      <div class="navbar-right">
-        <ul class="navbar-list">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home <span class="sr-only"></span></a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="recipes.html">Recipes</a></li>
-          <li class="nav-item"><a class="nav-link" href="thefridge.html">The Fridge</a></li>
-        </ul>
-      </div>
-    </nav>
+  <div class="header_section">
+    <div class="container">
+      <nav class="navbar">
+        <div class="navbar-left">
+          <form class="logoImage">
+            <img src="/images/logo/logo-boldletters-transp.png" width="256" height="39" alt="fridge-circle-logo">
+          </form>
+        </div>
+        <div class="navbar">
+          <ul class="navbar-list">
+            <li class="nav-item"><a class="nav-link" href="/index">Home <span class="sr-only"></span></a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/recipes">Recipes</a></li>
+            <li class="nav-item"><a class="nav-link" href="/thefridge">The Fridge</a></li>
+          </ul>
+        </div>
+        <div class="searchButton">
+          <form action="search" method="get" class="searchButton">
+            <input type="text" name="searchNavBar" placeholder="Search...">
+          </form>
+        </div>
+
+      </nav>
+    </div>
   </div>
 
 
