@@ -1,11 +1,12 @@
 <header th:fragment="standard-header">
 
+  <link href="/styles/header.css" rel="stylesheet">
   <div class="header_section">
     <div class="container">
       <nav class="navbar">
         <div class="navbar-left">
           <form class="logoImage">
-            <img src="/images/logo/logo-boldletters-transp.png" width="256" height="39" alt="fridge-circle-logo">
+            <a href="/index"><img src="/images/logo/logo-boldletters-transp.png" width="256" height="39" alt="fridge-circle-logo" /></a>
           </form>
         </div>
         <div class="navbar">
@@ -17,8 +18,8 @@
           </ul>
         </div>
         <div class="searchButton">
-          <form action="search" method="get" class="searchButton">
-            <input type="text" name="searchNavBar" placeholder="Search...">
+          <form>
+            <input type="text" name="searchNavBar" placeholder="Search..">
           </form>
         </div>
 

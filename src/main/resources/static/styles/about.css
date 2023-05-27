@@ -3,7 +3,7 @@
     padding: 0;
 }
 body {
-    font-family: Arial, sans-serif;
+    font-family: Circular-Regular,sans-serif;
     /*
     background-image: url('');
      */
@@ -90,14 +90,30 @@ body {
     font-weight: bold;
 }
 
-.hero {
-
-}
+/*
+unique STUFF
+ */
 
 .image-section {
-    height: auto;
-    width: auto ;
-    margin-left: auto;
-    object-fit: contain;
+    text-align: center;
 }
 
+.image-section img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.text-section {
+    text-align: justify;
+}
+
+.btn {
+    background-color: #1a853f;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
