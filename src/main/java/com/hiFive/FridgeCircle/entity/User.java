@@ -16,7 +16,7 @@ import java.math.BigInteger;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private BigInteger userId;
+    private Long userId;
     private String fullName;
     private String username;
     private String password;

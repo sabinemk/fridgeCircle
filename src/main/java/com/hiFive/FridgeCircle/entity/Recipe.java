@@ -1,14 +1,12 @@
 package com.hiFive.FridgeCircle.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -17,25 +15,43 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String name;
     private String difficultyLevel;
     private Integer rating;
-//    private ArrayList<Ingridient> Ingredients;
+//    @OneToOne
+/*    @ManyToMany
+   @JoinTable(
+            name = "recipe_ingredient",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))*/
+ //   private Ingredient ingredients;
     private String cookingTime;
     private Integer portionSize;
-    //private ArrayList<SpecialTag> specialTags (vegan/veggie etc);
+//    @OneToOne
+   /* @ManyToMany
+    @JoinTable(
+            name = "recipe_tag",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))*/
+//    private Tag specialTags; //(vegan/veggie etc);
     private String cookingSteps;
-    private BigInteger authorId;
 
-    public Recipe(String name, String difficultyLevel, Integer rating, String cookingTime, Integer portionSize, String cookingSteps, BigInteger authorId) {
+    private Long creatorId;
+//    @OneToOne
+    private String tag;
+
+    public Recipe(String name, String difficultyLevel, Integer rating,
+                  String cookingTime, Integer portionSize,
+                  String cookingSteps, Long creatorId, String tag) {
         this.name = name;
         this.difficultyLevel = difficultyLevel;
         this.rating = rating;
         this.cookingTime = cookingTime;
         this.portionSize = portionSize;
         this.cookingSteps = cookingSteps;
-        this.authorId = authorId;
+        this.creatorId = creatorId;
+        this.tag=tag;
     }
 }
 

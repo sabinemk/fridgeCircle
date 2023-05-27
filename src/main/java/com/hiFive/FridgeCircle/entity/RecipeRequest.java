@@ -18,6 +18,11 @@ public class RecipeRequest {
     //    private ArrayList<Ingridient> Ingredients;
     private String cookingTime;
     private Integer portionSize;
+    private String ingredient;
+    private String quantity;
+    private String unit;
     //private ArrayList<SpecialTag> specialTags (vegan/veggie etc);
     private String cookingSteps;
+    private String creator;
+    private String tag;
 }
