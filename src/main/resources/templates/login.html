@@ -13,7 +13,7 @@
 </head>
 <body>
 <header th:replace="~{fragments/header :: standard-header}"></header>
-<main class="margin-top">
+<main class="loginMain">
     <h3 class="margin-top">Sign in to your Fridge Circle account</h3>
     <form method="post" action="/login">
         <div>
@@ -26,6 +26,10 @@
             <button class="button" type="reset">Clear</button>
         </div>
     </form>
+    <br>
+    <p>Or register a new account</p>
+    <a href="/register" class="registerBtn">Register</a>
+
 
 </main>
 
