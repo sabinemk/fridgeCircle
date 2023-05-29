@@ -6,13 +6,12 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li {
 }
 body {
     font-family: Circular-Regular,sans-serif;
-    /*
-    background-image: url('');
-     */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.88 !important;
+    margin: 20px 0 10px 0;
+    color: #000;
+
 
 }
 .header_section {
@@ -22,40 +21,28 @@ body {
     background-color: darkseagreen;
     padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 .navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .navbar-list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-right: auto;
+    margin-left: 0;
+    padding: 0;
+    list-style-type: none;
+
 }
 .navbar-left {
     display: flex;
     align-items: center;
-}
-
-.image-upload-form {
-    margin-right: 10px;
-}
-
-.image-upload-form input[type="file"] {
-    display: none;
-}
-
-.image-upload-form label {
-    cursor: pointer;
 }
 
 .navbar-right {
@@ -79,7 +66,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #333;
+    color: black;
     padding: 10px;
     transition: color 0.3s ease;
 }
@@ -87,28 +74,31 @@ body {
 .nav-link:hover {
     color: #555;
 }
-
-.active .nav-link {
-    font-weight: bold;
+.containerHero {
+    max-width: 1200px;
+    align-content: center;
 }
 
 .hero {
-
     background-size: cover;
     background-position: center;
     color: black;
     padding: 100px 20px;
     text-align: center;
+    align-content: center;
 }
 
 .hero h1 {
     font-size: 48px;
     margin-bottom: 20px;
+    align-content: center;
 }
+
 
 .hero p {
     font-size: 24px;
     margin-bottom: 40px;
+    align-content: center;
 }
 
 .hero a {
@@ -118,5 +108,6 @@ body {
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
+    align-content: center;
 }
 
