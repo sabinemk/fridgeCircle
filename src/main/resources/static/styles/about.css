@@ -1,106 +1,9 @@
-.body, h1, h2, h3, h4, h5, h6, p, ul, li {
-    margin: 0;
-    padding: 0;
-}
-body {
-    font-family: Circular-Regular,sans-serif;
-    /*
-    background-image: url('');
-     */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgba(255, 255, 255, 0.5);
-
-    /*
-    margin: 25px 0;
-    font-family: "larsseit",Arial,Helvetica,sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    color: #2e3232;
-    line-height: 1.7;
-     */
-}
-.header_section {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: darkseagreen;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.navbar-list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.navbar-left {
-    display: flex;
-    align-items: center;
-}
-
-.image-upload-form {
-    margin-right: 10px;
-}
-
-.image-upload-form input[type="file"] {
-    display: none;
-}
-
-.image-upload-form label {
-    cursor: pointer;
-}
-
-.navbar-right {
-    display: flex;
-}
-
-
-.navbar-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-.navbar-list li {
-    margin-left: 10px;
-}
-
-.nav-item {
-    margin-right: 10px;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: #333;
-    padding: 10px;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #555;
-}
-
-.active .nav-link {
-    font-weight: bold;
-}
+@import url('static/styles/header.css');
 
 /*
 unique STUFF
  */
+
 
 .image-section {
     text-align: center;
@@ -113,8 +16,9 @@ unique STUFF
     height: auto;
 }
 
-.text-section {
-    text-align: justify;
+.text-section-about {
+    text-align: left;
+    margin: 5px 5px 5px 5px;
 }
 
 .btn {
