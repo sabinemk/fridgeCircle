@@ -2,11 +2,9 @@
 
 .containerHero {
     max-width: 1200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
+    text-align: center;
 }
-
 
 .hero {
     background-size: cover;
@@ -19,20 +17,81 @@
 .hero h1 {
     font-size: 48px;
     margin-bottom: 20px;
+
 }
 
 .hero p {
     font-size: 24px;
     margin-bottom: 40px;
     align-content: center;
+
 }
 
 .hero a {
-    background-color: #1a853f;
+    background-color: #205B28;
     color: #ffffff;
     padding: 10px 20px;
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
+    margin: 0 auto;
+    max-width: 200px;
 }
+
+.btn:hover {
+    opacity: 0.7;
+}
+
+/*
+recipe suggestions section
+ */
+.recipe-suggestions.flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 100px;
+}
+
+.recipe-suggestions .text-center {
+    flex-basis: calc(25% - 20px);
+    margin-bottom: 5px;
+    border-width: 1px;
+    border-radius: 70px;
+    border-bottom-color: black;
+}
+
+
+.recipe-suggestions .text-center:hover img {
+    opacity: 0.7;
+}
+
+.title-link {
+    align-content: center;
+    position: absolute;
+    color: black;
+    font-size: 18px;
+    margin-top: 10px;
+
+}
+
+.image-tag {
+    border-width: 1px;
+    border-radius: 70px;
+    margin-top: 5px;
+    font-size: 14px;
+    color: black;
+    background-color:#AE5B8D;
+    align-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /*Moves the tag horizontally by 50% of its own width to center it precisely.*/
+    padding: 5px 10px;
+}
+
+.home-recipe-image {
+    position: relative;
+    display: inline-block;
+}
+
+
 

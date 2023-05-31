@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,11 +41,11 @@ public class RecipeController {
 
     }
 
-    @GetMapping("/recipe")
+    @GetMapping("/createrecipe")
     public String showRecipePage() {
-        return "recipe";
+        return "createRecipe";
     }
-    @PostMapping("/recipe")
+    @PostMapping("/createrecipe")
     public String handleRecipeCreation(RecipeRequest recipeRequest){
        try {
            List<Ingredient> ingredients=new ArrayList<>();
