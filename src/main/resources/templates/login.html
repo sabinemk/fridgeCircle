@@ -17,23 +17,21 @@
     <h3 class="margin-top">Sign in to your Fridge Circle account</h3>
     <form method="post" action="/login">
         <div>
-            <input type="text" name="username" placeholder="Username" required>
+            <input class="inputLogin" type="text" name="username" placeholder="Username" required>
 
-            <input type="password" name="password" placeholder="Password" required>
+            <input class="inputLogin" type="password" name="password" placeholder="Password" required>
         </div>
         <div>
-            <button class="button" type="submit">Login</button>
-            <button class="button" type="reset">Clear</button>
+            <button class="buttonLogin" type="submit">Login</button>
+            <button class="buttonLogin" type="reset">Clear</button>
         </div>
     </form>
     <br>
     <p>Or register a new account</p>
     <a href="/register" class="registerBtn">Register</a>
 
-
 </main>
 
-
-
 </body>
+<footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </html>

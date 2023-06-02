@@ -1,2 +1,23 @@
 @import url('static/styles/header.css');
 
+.entire-register {
+
+}
+.terms-wrapper {
+    position: relative;
+}
+
+.dialog-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.terms-wrapper:hover .dialog-box {
+    display: block;
+}
