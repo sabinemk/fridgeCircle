@@ -1,28 +1,25 @@
 package com.hiFive.FridgeCircle.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigInteger;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecipeRequest {
     private String name;
-    private String difficultyLevel;
+    private Difficulty difficultyLevel;
     private Integer rating;
-    //    private ArrayList<Ingridient> Ingredients;
-    private String cookingTime;
+    private Integer cookingTime;
     private Integer portionSize;
-    private String ingredient;
-    private String quantity;
-    private String unit;
-    //private ArrayList<SpecialTag> specialTags (vegan/veggie etc);
+    private List<RecipeIngredient> recipeIngredientList;
+//    private String ingredient;
+//    private String quantity;
+//    private String unit;
     private String cookingSteps;
     private String creator;
-    private String tag;
+    private List<Tag> tags;
 }

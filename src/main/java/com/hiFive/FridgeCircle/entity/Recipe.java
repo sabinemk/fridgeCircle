@@ -17,41 +17,29 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String difficultyLevel;
+    private Difficulty difficultyLevel;
     private Integer rating;
-//    @OneToOne
-/*    @ManyToMany
-   @JoinTable(
-            name = "recipe_ingredient",
-            joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))*/
- //   private Ingredient ingredients;
-    private String cookingTime;
+    private Integer cookingTime;
     private Integer portionSize;
-//    @OneToOne
-   /* @ManyToMany
-    @JoinTable(
-            name = "recipe_tag",
-            joinColumns = @JoinColumn(name = "recipe_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"))*/
-//    private Tag specialTags; //(vegan/veggie etc);
     private String cookingSteps;
-
+    @OneToMany
+    private List<RecipeIngredient> ingredientList;
     private Long creatorId;
-//    @OneToOne
-    private String tag;
+    @OneToMany
+    private List<Tag> tagsList;
 
-    public Recipe(String name, String difficultyLevel, Integer rating,
-                  String cookingTime, Integer portionSize,
-                  String cookingSteps, Long creatorId, String tag) {
+    public Recipe(String name, Difficulty difficultyLevel, Integer rating,
+                  Integer cookingTime, Integer portionSize,
+                  String cookingSteps, List<RecipeIngredient> ingredientList, Long creatorId, List<Tag> tags) {
         this.name = name;
         this.difficultyLevel = difficultyLevel;
         this.rating = rating;
         this.cookingTime = cookingTime;
         this.portionSize = portionSize;
         this.cookingSteps = cookingSteps;
+        this.ingredientList=ingredientList;
         this.creatorId = creatorId;
-        this.tag=tag;
+        this.tagsList=tags;
     }
 }
 
