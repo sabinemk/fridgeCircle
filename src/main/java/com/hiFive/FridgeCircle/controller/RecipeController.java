@@ -1,14 +1,14 @@
 package com.hiFive.FridgeCircle.controller;
 
 import com.hiFive.FridgeCircle.entity.*;
-import com.hiFive.FridgeCircle.repository.IngredientRepository;
-import com.hiFive.FridgeCircle.repository.RecipeIngredientRepository;
-import com.hiFive.FridgeCircle.repository.TagRepository;
+import com.hiFive.FridgeCircle.service.IngredientService;
+import com.hiFive.FridgeCircle.service.RecipeIngredientService;
 import com.hiFive.FridgeCircle.service.RecipeService;
+import com.hiFive.FridgeCircle.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,83 +16,143 @@ import java.util.List;
 /* TODO Endpoints for RecipeController:
  - /recipes @get
  - /recipe @get/@post
- */
+
+ UPDATED:
+ http://localhost/createrecipe  /fill form - from form recipe will not be created because of Lists,
+                                 but "chicken" is harcoded after "submit" button,
+                                 then you can access recipe - recipe.html I coppied from createrecpy.
+                                 It has to display selected recipe - I pass in controller showOneRecipe
+                                 model three objects which can be used for display in "recipe" page.
+ http://localhost/recipe/1              */
 @Controller
 public class RecipeController {
     private RecipeService recipeService;
-    private TagRepository tagRepository;
-    private IngredientRepository ingredientRepository;
-    private RecipeIngredientRepository recipeIngredientRepository;
+    private TagService tagService;
+    private IngredientService ingredientService;
 
+    private RecipeIngredientService recipeIngredientService;
     @Autowired
     public RecipeController(RecipeService recipeService,
-                            TagRepository tagRepository,
-                            IngredientRepository ingredientRepository,
-                            RecipeIngredientRepository recipeIngredientRepository) {
-        this.tagRepository=tagRepository;
-        this.ingredientRepository=ingredientRepository;
+                            TagService tagService,
+                            IngredientService ingredientService,
+                            RecipeIngredientService recipeIngredientService) {
         this.recipeService = recipeService;
-        this.recipeIngredientRepository=recipeIngredientRepository;
+        this.tagService = tagService;
+        this.ingredientService = ingredientService;
+        this.recipeIngredientService = recipeIngredientService;
     }
 
     @GetMapping("/recipes")
-    public String showAllRecipesPage() {
+    public String showAllRecipesPage(Model model) {
+        List<Recipe> allRecipes=this.recipeService.findAll();
+
+        model.addAttribute("recipeList",allRecipes);
         return "recipes";
 
     }
 
+    @GetMapping("/recipes/{searchString}")
+    public String searchRecipeNameTagIngredient(@PathVariable(required = false) String searchString, Model model){
+        List<Recipe> searchedRecipes=this.recipeService.findAllByString(searchString);
+        model.addAttribute("searchedRecipeList",searchedRecipes);
+        // search Recipe by Name by Tag by Ingredient and add to list
+        //model pass List to html
+         return "recipes";
+    }
+
+
+    @GetMapping("/recipe/{id}")
+    public String showOneRecipe(@PathVariable Long id, Model model){
+        Recipe foundRecipe=this.recipeService.getRecipeById(id);
+        model.addAttribute("recipe",foundRecipe);
+        model.addAttribute("ingredientList",foundRecipe.getIngredientList());
+        model.addAttribute("tagsList",foundRecipe.getTagsList());
+
+         return "recipe";
+
+    }
+
     @GetMapping("/createrecipe")
-    public String showRecipePage() {
+    public String showRecipePage(Model model) {
+        //get difficulty level enum
+        //get ingredients list entity
+        //get tags entity
+        //get units to display enum
+
+        //List<Ingredient> ingredientService.getAll();
+        //List<Tag>tagService.getAll;
+        //model.addAttribute("ingrList",ingredientList);
+        //if ingredient is not in list? "Other"
         return "createRecipe";
     }
     @PostMapping("/createrecipe")
-    public String handleRecipeCreation(RecipeRequest recipeRequest){
+    public String handleRecipeCreation(/*@RequestBody RecipeRequest recipeRequest,*/ Model model ){
        try {
-           List<Ingredient> ingredients=new ArrayList<>();
+           /*---manual creation of recipe:
+            1.Create Ingredients in database.
+            2.Create Tag in database and Tag list.
+            3.Create RecipeIngredients for a recipe in database and List.
+            4.Create Recipe with RecipeIngredients and Tag list in database.
+            ---*/
            List<Tag> specialTags=new ArrayList<>();
-           List<Recipe> recipes=new ArrayList<>();
+           List<RecipeIngredient> recIngrList=new ArrayList<>();
 
            Ingredient ingredient1=new Ingredient("milk");
            Ingredient ingredient2=new Ingredient("flour");
            Ingredient ingredient3=new Ingredient("water");
            Ingredient ingredient4=new Ingredient("egg");
-           ingredients.add(ingredient1);
-           ingredients.add(ingredient2);
-           ingredients.add(ingredient3);
-           ingredients.add(ingredient4);
 
            Tag tag1=new Tag("vegan");
            specialTags.add(tag1);
 
-           this.ingredientRepository.save(ingredient1);
-           this.ingredientRepository.save(ingredient2);
-           this.ingredientRepository.save(ingredient3);
-           this.ingredientRepository.save(ingredient4);
+           this.ingredientService.createIngredient(ingredient1);
+           this.ingredientService.createIngredient(ingredient2);
+           this.ingredientService.createIngredient(ingredient3);
+           this.ingredientService.createIngredient(ingredient4);
 
-           this.tagRepository.save(tag1);
+           this.tagService.createTag(tag1);
+
+           RecipeIngredient recIngr1=new RecipeIngredient(ingredient1,6,Unit.CUP);
+           RecipeIngredient recIngr2=new RecipeIngredient(ingredient2,300,Unit.GRAMMS);
+           RecipeIngredient recIngr3=new RecipeIngredient(ingredient3,100,Unit.GRAMMS);
+           RecipeIngredient recIngr4=new RecipeIngredient(ingredient4,3,Unit.PIECE);
+
+           recIngrList.add(recIngr1);
+           recIngrList.add(recIngr2);
+           recIngrList.add(recIngr3);
+           recIngrList.add(recIngr4);
+
+           this.recipeIngredientService.saveRecipeIngredientList(recIngrList);
 
            Recipe recipe1=new Recipe(
                    "Chicken",
-                   "easy",
+                   Difficulty.EASY,
                    10,
-                   "90",
+                   15,
                    9,
                    "1. Mix" +
                            " 2.Cook ",
+                    recIngrList,
                    332233L,
-                   "non-vegan");
+                   specialTags);
            this.recipeService.createRecipe(recipe1);
-           RecipeIngredient ingr1=new RecipeIngredient(recipe1,
-                   ingredient1,8,Unit.CUP);
-           RecipeIngredient ingr2=new RecipeIngredient(recipe1,
-                   ingredient3,8,Unit.LITTER);
-           RecipeIngredient ingr3=new RecipeIngredient(recipe1,
-                   ingredient2,8,Unit.GRAMMS);
-           this.recipeIngredientRepository.save(ingr1);
-           this.recipeIngredientRepository.save(ingr2);
-           this.recipeIngredientRepository.save(ingr3);
 
-           Recipe recipe2=new Recipe(
+           /*----RecipeRequest----*
+
+                       1.Create Ingredients in database.
+                       2.Create Tag in database and Tag list.
+                       3.Create RecipeIngredients for a recipe in database and List.
+                       4.Create Recipe with RecipeIngredients and Tag list in database.      */
+           
+                       List<RecipeIngredient> recipeIngredientList=new ArrayList<>();
+                       List<Tag> tagsList=new ArrayList<>();
+
+                       model.addAttribute("ingredientList",recipeIngredientList);
+                       model.addAttribute("tagList",tagsList);
+
+           /* RecipeIngredient recIngr11=new RecipeIngredient(recipeRequest.getIngredient(),
+            recipeRequest.getQuantity(),recipeRequest.getUnit());
+            Recipe recipe2=new Recipe(
                    recipeRequest.getName(),
                    recipeRequest.getDifficultyLevel(),
                    Integer.parseInt(String.valueOf(recipeRequest.getRating())),
@@ -101,18 +161,7 @@ public class RecipeController {
                    recipeRequest.getCookingSteps(),
                    Long.valueOf(recipeRequest.getCreator()),
                    recipeRequest.getTag());
-
-           this.recipeService.createRecipe(recipe2);
-           this.tagRepository.save(new Tag(recipeRequest.getTag()));
-           Ingredient ingr7=new Ingredient(recipeRequest.getIngredient());
-           this.ingredientRepository.save(ingr7);
-           RecipeIngredient rec_ingr1=new RecipeIngredient(
-                   recipe2,
-                   ingr7,
-                   Integer.parseInt(String.valueOf(recipeRequest.getQuantity())),
-                   Unit.valueOf(String.valueOf(recipeRequest.getUnit()).toUpperCase()));
-
-           this.recipeIngredientRepository.save(rec_ingr1);
+                    ty())),UpperCase()));*/
 
            return "redirect:recipes?status=RECIPE-CREATE_SUCCESS";
        }
