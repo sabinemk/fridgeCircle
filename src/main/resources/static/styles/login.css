@@ -1,4 +1,4 @@
-@import url('static/styles/header.css');
+
 
 .loginMain{
     padding: 50px 20px;
@@ -11,8 +11,15 @@
 }
 
 .buttonLogin {
+    background-color: #1a853f;
+    color: #ffffff;
+    padding: 5px 10px;
     border-radius: 4px;
     text-decoration: none;
+    font-weight: bold;
+}
+.buttonLogin:hover {
+    opacity: 0.7;
 }
 
 .loginMain {
@@ -28,4 +35,8 @@
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
+}
+
+.registerBtn:hover {
+    opacity: 0.7;
 }

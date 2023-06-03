@@ -1,2 +1,12 @@
-@import url('static/styles/header.css');
+.heroRecipes {
+    text-align: center;
+    align-content: center;
+    background-color: #205B28;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin: 0 auto;
+
+
+}
+
 

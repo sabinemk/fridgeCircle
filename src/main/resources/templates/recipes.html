@@ -13,10 +13,20 @@
 </head>
 <body>
 <header th:replace="~{fragments/header :: standard-header}"></header>
+<section class="main-recipes">
+    <div class="heroRecipes">
+        <p>We have listed all recipes by meal categories - breakfast, lunch, dinner, snack or dessert.
+        Have a look around, we are sure you will find something nice :)</p>
 
-<div class="mainRecipes">
-    <button class="button darkmagenta-theme" type="submit"><a href="/createrecipe">Create recipe</a></button>
-</div>
+
+    </div>
+    <!-- lists all recipes by category-->
+
+    <div class="">
+        <button class="button darkmagenta-theme" type="submit"><a href="/createrecipe">Create recipe</a></button>
+    </div>
+</section>
+
 
 <footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </body>
