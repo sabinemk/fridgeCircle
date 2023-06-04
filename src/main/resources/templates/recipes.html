@@ -16,19 +16,38 @@
 <section class="main-recipes">
     <div class="heroRecipes">
         <p>We have listed all recipes by meal categories - breakfast, lunch, dinner, snack or dessert.
-        Have a look around, we are sure you will find something nice :)</p>
-
-
+            Have a look around, we are sure you will find something nice :)
+        Click on "Create recipe to submit your own ideas"</p>
     </div>
-    <!-- lists all recipes by category-->
+
+    <div class="recipe-list">
+        <h2>All Recipes</h2>
+        <ul>
+            <li th:each="recipe : ${recipeList}">
+                <h3 th:text="${recipe.name}"></h3>
+                <p>Difficulty Level: <span th:text="${recipe.difficultyLevel}"></span></p>
+                <p>Rating: <span th:text="${recipe.rating}"></span></p>
+                <p>Cooking Time: <span th:text="${recipe.cookingTime}"></span> minutes</p>
+                <p>Portion Size: <span th:text="${recipe.portionSize}"></span></p>
+                <p>Cooking Steps: <span th:text="${recipe.cookingSteps}"></span></p>
+                <p>Ingredients:</p>
+                <ul>
+                    <li th:each="ingredient : ${recipe.ingredientList}">
+                        <span th:text="${ingredient.quantity}"></span>
+                        <span th:text="${ingredient.unit}"></span>
+                        <span th:text="${ingredient.ingredient.name}"></span>
+                    </li>
+                </ul>
+                <p>Created By: <span th:text="${recipe.creatorId}"></span></p>
+            </li>
+        </ul>
+    </div>
 
     <div class="">
         <button class="button darkmagenta-theme" type="submit"><a href="/createrecipe">Create recipe</a></button>
     </div>
 </section>
 
-
 <footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </body>
 </html>
-
