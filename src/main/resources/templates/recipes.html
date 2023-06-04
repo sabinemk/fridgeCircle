@@ -39,12 +39,6 @@
                     </li>
                 </ul>
                 <p>Created By: <span th:text="${recipe.creatorId}"></span></p>
-                <p>Tags:</p>
-                <ul>
-                    <li th:each="tag : ${recipe.tagsList}">
-                        <span th:text="${tag.name}"></span>
-                    </li>
-                </ul>
             </li>
         </ul>
     </div>
