@@ -19,25 +19,26 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
     default List<Recipe> findAllByString(String searchString) {
         List<Recipe> allRecipes = this.findAll();
         List<Recipe> foundRecipes = new ArrayList<>();
+        String searchStringNoCase=searchString.toUpperCase();
 
         for (Recipe recipe : allRecipes) {
             List<RecipeIngredient> recipeIngredientList = recipe.getIngredientList();
 
 
-            if (recipe.getName().contains(searchString)) {
+            if (recipe.getName().toUpperCase().contains(searchStringNoCase)) {
                 foundRecipes.add(recipe);
                 continue;
             }
             recipeIngredientList.forEach(recipeIngredient ->
             {
-                if (recipeIngredient.getIngredient().getName().contains(searchString)
+                if (recipeIngredient.getIngredient().getName().toUpperCase().contains(searchStringNoCase)
                         && !foundRecipes.contains(recipe)) {
                     foundRecipes.add(recipe);
                     return;
                 }
 
             });
-            if (recipe.getTag().getName().contains(searchString) && !foundRecipes.contains(recipe)) {
+            if (recipe.getTag().getName().toUpperCase().contains(searchStringNoCase) && !foundRecipes.contains(recipe)) {
                     foundRecipes.add(recipe);
                 }
             };
