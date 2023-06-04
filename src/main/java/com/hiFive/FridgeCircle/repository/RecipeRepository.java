@@ -22,7 +22,7 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
 
         for (Recipe recipe : allRecipes) {
             List<RecipeIngredient> recipeIngredientList = recipe.getIngredientList();
-            List<Tag> tagsList = recipe.getTagsList();
+
 
             if (recipe.getName().contains(searchString)) {
                 foundRecipes.add(recipe);
@@ -37,15 +37,10 @@ public interface RecipeRepository extends CrudRepository<Recipe, Long> {
                 }
 
             });
-            tagsList.forEach(recipeTag ->
-            {
-                if (recipeTag.getName().contains(searchString) && !foundRecipes.contains(recipe)) {
+            if (recipe.getTag().getName().contains(searchString) && !foundRecipes.contains(recipe)) {
                     foundRecipes.add(recipe);
-                    return;
                 }
-            });
-
-        }
+            };
         return foundRecipes;
     }
 

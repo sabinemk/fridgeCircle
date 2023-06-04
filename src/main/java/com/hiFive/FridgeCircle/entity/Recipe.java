@@ -25,12 +25,12 @@ public class Recipe {
     @OneToMany
     private List<RecipeIngredient> ingredientList;
     private Long creatorId;
-    @OneToMany
-    private List<Tag> tagsList;
+    @OneToOne
+    private Tag tag;
 
     public Recipe(String name, Difficulty difficultyLevel, Integer rating,
                   Integer cookingTime, Integer portionSize,
-                  String cookingSteps, List<RecipeIngredient> ingredientList, Long creatorId, List<Tag> tags) {
+                  String cookingSteps, List<RecipeIngredient> ingredientList, Long creatorId, Tag tag) {
         this.name = name;
         this.difficultyLevel = difficultyLevel;
         this.rating = rating;
@@ -39,7 +39,7 @@ public class Recipe {
         this.cookingSteps = cookingSteps;
         this.ingredientList=ingredientList;
         this.creatorId = creatorId;
-        this.tagsList=tags;
+        this.tag=tag;
     }
 }
 

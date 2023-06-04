@@ -11,15 +11,15 @@ import java.util.List;
 @NoArgsConstructor
 public class RecipeRequest {
     private String name;
-    private Difficulty difficultyLevel;
+    private String difficultyLevel;
     private Integer rating;
     private Integer cookingTime;
     private Integer portionSize;
-    private RecipeIngredient recipeIngredientList;
-//    private String ingredient;
-//    private String quantity;
-//    private String unit;
+//  private RecipeIngredient recipeIngredientList;
+    private String ingredient;
+    private Integer quantity;
+    private String unit;
     private String cookingSteps;
     private String creator;
-    private List<Tag> tags;
+    private String tag;
 }
