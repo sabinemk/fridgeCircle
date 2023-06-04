@@ -17,7 +17,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: #92C99A;
+    background-color: #76AE7E;
     padding: 3px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -62,7 +62,7 @@ body {
 }
 
 .nav-link:hover {
-    color: #5C5C5C;
+    color: #3A553D;
 }
 
 

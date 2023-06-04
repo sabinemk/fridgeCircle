@@ -14,32 +14,38 @@
 </head>
 <body >
 <header th:replace="~{fragments/header :: standard-header}"></header>
-<div class="containerMain" >
-<section class="heroAbout">
-    <div class="image-section">
-        <img src="/images/set-healthy-food-ingredients.jpg" alt="About-fridge-circle">
+<section class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="column image-about">
+                <img src="/images/recipe-images/croutons.jpg" alt="About-fridge-circle">
+            </div>
+        </div>
     </div>
-</section>
-    <br>
-    <div class="text-section-about">
-        <h4>Oh, hi there!</h4>
-        <p>We are so glad you have found Fridge Circle - the one-stop recipe database for delicious, easy
-        and cost-effective recipes. Food waste is a serious issue - in the EU, nearly 59 million tonnes of food waste
-        (131 kg/inhabitant) are generated annually with an associated market value estimated at 132 billion euros
-        <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Food_waste_and_food_waste_prevention_-_estimates">
-        (Eurostat, 2022)</a>. Eurostat roughly estimates that around 10% of food made available to
-        EU consumers (at retail, food services and households) may be wasted. At the same time, some
-        32.6 million people cannot afford a quality meal every second day
-        <a href="https://ec.europa.eu/eurostat/data/database?node_code=ilc_mdes03">(Eurostat, 2021)</a>.</p>
-        <br>
-        <p>We created Fridge Circle as a continuously growing database for anyone to share their recipe
-        ideas and promote a zero-waste lifestyle. We encourage you to post recipes using some of the most commonly
-        wasted foods to inspire creativity and love for cooking, while respecting the planet and our resources.</p>
-        <h4><strong>Food is never for the bin</strong></h4>
-        <br>
-        <a href="/recipes" class="exploreBtn">Explore Recipes</a>
-    </div>
-</div>
 
+    <div class="col-lg-8">
+            <div class="column text-section-about">
+                <h4>Oh, hi there!</h4>
+                <p>We are so glad you have found Fridge Circle - the one-stop recipe database for delicious, easy
+                    and cost-effective recipes. Food waste is a serious issue - in the EU, nearly 59 million tonnes of food waste
+                    (131 kg/inhabitant) are generated annually with an associated market value estimated at 132 billion euros
+                    <a href="https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Food_waste_and_food_waste_prevention_-_estimates">
+                        (Eurostat, 2022)</a>. Eurostat roughly estimates that around 10% of food made available to
+                    EU consumers (at retail, food services and households) may be wasted. At the same time, some
+                    32.6 million people cannot afford a quality meal every second day
+                    <a href="https://ec.europa.eu/eurostat/data/database?node_code=ilc_mdes03">(Eurostat, 2021)</a>.</p>
+                <br>
+                <p>We created Fridge Circle as a continuously growing database for anyone to share their recipe
+                    ideas and promote a zero-waste lifestyle. We encourage you to post recipes using some of the most commonly
+                    wasted foods to inspire creativity and love for cooking, while respecting the planet and our resources.</p>
+                <h4><strong>Food is never for the bin</strong></h4>
+                <br>
+                <a href="/recipes" class="exploreBtn">Explore Recipes</a>
+            </div>
+    </div>
+
+</section>
+
+<footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </body>
 </html>

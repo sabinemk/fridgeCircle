@@ -14,26 +14,33 @@
 <body>
 <header th:replace="~{fragments/header :: standard-header}"></header>
 
-<div class="form-wrapper">
-    <form class="main">
+<div class="entire-register">
+    <div class="form-wrapper">
+        <form class="main">
 
-        <input type="text" name="username" placeholder="Username" required>
+            <input class="input-register" type="text" name="username" placeholder="Username" required>
 
-        <input type="email" name="email" placeholder="Email Address" required>
+            <input class="input-register" type="email" name="email" placeholder="Email Address" required>
 
-        <input type="password" name="pass1" placeholder="Password" required>
+            <input class="input-register" type="password" name="pass1" placeholder="Password" required>
 
-        <input type="password" name="pass2" placeholder="Confirm Password" required>
+            <input class="input-register" type="password" name="pass2" placeholder="Confirm Password" required>
 
-        <input type="checkbox" name="termsAccepted" value="yes">I agree to the Terms & Conditions
+            <div class="terms-wrapper">
+                <input type="checkbox" name="termsAccepted" value="yes" required>
+                <label>I agree to the Terms & Conditions</label>
+                <div class="dialog-box">There are no T&C, we just like to look serious</div>
+            </div>
 
-        <input type="submit" value="Register">
-    </form>
+            <input type="submit" class="register-button" value="Register">
+        </form>
 
-<!-- NEEDS REGISTER CONFIRMATION -->
+        <!-- NEEDS REGISTER CONFIRMATION -->
 
+    </div>
 </div>
 
+<footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </body>
 </html>
 
