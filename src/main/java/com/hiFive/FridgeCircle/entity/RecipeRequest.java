@@ -15,7 +15,7 @@ public class RecipeRequest {
     private Integer rating;
     private Integer cookingTime;
     private Integer portionSize;
-    private List<RecipeIngredient> recipeIngredientList;
+    private RecipeIngredient recipeIngredientList;
 //    private String ingredient;
 //    private String quantity;
 //    private String unit;
