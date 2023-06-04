@@ -50,6 +50,19 @@ public class RecipeController {
         return "recipes";
 
     }
+//    @GetMapping("/recipes")
+//    public String showAllRecipesPage(@RequestParam(required = false) String search, Model model) {
+//        List<Recipe> recipeList;
+//        if (search != null && !search.isEmpty()) {
+//            recipeList = (List<Recipe>) recipeService.findByNamePart(search);
+//        } else {
+//            recipeList = recipeService.findAll();
+//        }
+//        model.addAttribute("recipeList", recipeList);
+//        return "recipes";
+//    }
+
+
 
     @GetMapping("/recipes/{searchString}")
     public String searchRecipeNameTagIngredient(@PathVariable(required = false) String searchString, Model model){
@@ -71,6 +84,17 @@ public class RecipeController {
          return "recipe";
 
     }
+
+//    @GetMapping("/recipes/search")
+//    public String searchRecipesPage(@RequestParam String query, Model model) {
+//        List<Recipe> searchResults = recipeService.findAllByString(query);
+//        model.addAttribute("recipeList", searchResults);
+//        return "recipes";
+//    }
+    //my idea was to just show the recipe according to a search. maybe it would
+    //be easier for accessing the database? instead of the various tags.
+
+
 
     @GetMapping("/createrecipe")
     public String showRecipePage(Model model) {
