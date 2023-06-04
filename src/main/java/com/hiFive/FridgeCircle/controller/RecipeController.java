@@ -31,6 +31,7 @@ public class RecipeController {
     private IngredientService ingredientService;
 
     private RecipeIngredientService recipeIngredientService;
+
     @Autowired
     public RecipeController(RecipeService recipeService,
                             TagService tagService,
@@ -44,9 +45,9 @@ public class RecipeController {
 
     @GetMapping("/recipes")
     public String showAllRecipesPage(Model model) {
-        List<Recipe> allRecipes=this.recipeService.findAll();
+        List<Recipe> allRecipes = this.recipeService.findAll();
 
-        model.addAttribute("recipeList",allRecipes);
+        model.addAttribute("recipeList", allRecipes);
         return "recipes";
 
     }
@@ -65,23 +66,23 @@ public class RecipeController {
 
 
     @GetMapping("/recipes/{searchString}")
-    public String searchRecipeNameTagIngredient(@PathVariable(required = false) String searchString, Model model){
-        List<Recipe> searchedRecipes=this.recipeService.findAllByString(searchString);
-        model.addAttribute("searchedRecipeList",searchedRecipes);
+    public String searchRecipeNameTagIngredient(@PathVariable(required = false) String searchString, Model model) {
+        List<Recipe> searchedRecipes = this.recipeService.findAllByString(searchString);
+        model.addAttribute("searchedRecipeList", searchedRecipes);
         // search Recipe by Name by Tag by Ingredient and add to list
         //model pass List to html
-         return "recipes";
+        return "recipes";
     }
 
 
     @GetMapping("/recipe/{id}")
-    public String showOneRecipe(@PathVariable Long id, Model model){
-        Recipe foundRecipe=this.recipeService.getRecipeById(id);
-        model.addAttribute("recipe",foundRecipe);
-        model.addAttribute("ingredientList",foundRecipe.getIngredientList());
-        model.addAttribute("tagsList",foundRecipe.getTagsList());
+    public String showOneRecipe(@PathVariable Long id, Model model) {
+        Recipe foundRecipe = this.recipeService.getRecipeById(id);
+        model.addAttribute("recipe", foundRecipe);
+        model.addAttribute("ingredientList", foundRecipe.getIngredientList());
 
-         return "recipe";
+
+        return "recipe";
 
     }
 
@@ -109,57 +110,57 @@ public class RecipeController {
         //if ingredient is not in list? "Other"
         return "createRecipe";
     }
+
     @PostMapping("/createrecipe")
-    public String handleRecipeCreation(/*@RequestBody RecipeRequest recipeRequest,*/ Model model ){
-       try {
+    public String handleRecipeCreation(RecipeRequest recipeRequest, Model model) {
+        try {
            /*---manual creation of recipe:
             1.Create Ingredients in database.
             2.Create Tag in database and Tag list.
             3.Create RecipeIngredients for a recipe in database and List.
             4.Create Recipe with RecipeIngredients and Tag list in database.
             ---*/
-           List<Tag> specialTags=new ArrayList<>();
-           List<RecipeIngredient> recIngrList=new ArrayList<>();
+            List<Tag> specialTags = new ArrayList<>();
+            List<RecipeIngredient> recIngrList = new ArrayList<>();
 
-           Ingredient ingredient1=new Ingredient("milk");
-           Ingredient ingredient2=new Ingredient("flour");
-           Ingredient ingredient3=new Ingredient("water");
-           Ingredient ingredient4=new Ingredient("egg");
+            Ingredient ingredient1 = new Ingredient("milk");
+            Ingredient ingredient2 = new Ingredient("flour");
+            Ingredient ingredient3 = new Ingredient("water");
+            Ingredient ingredient4 = new Ingredient("egg");
 
-           Tag tag1=new Tag("vegan");
-           specialTags.add(tag1);
+            Tag tag1 = new Tag("non-vegan");
 
-           this.ingredientService.createIngredient(ingredient1);
-           this.ingredientService.createIngredient(ingredient2);
-           this.ingredientService.createIngredient(ingredient3);
-           this.ingredientService.createIngredient(ingredient4);
+            this.ingredientService.createIngredient(ingredient1);
+            this.ingredientService.createIngredient(ingredient2);
+            this.ingredientService.createIngredient(ingredient3);
+            this.ingredientService.createIngredient(ingredient4);
 
-           this.tagService.createTag(tag1);
+            this.tagService.createTag(tag1);
 
-           RecipeIngredient recIngr1=new RecipeIngredient(ingredient1,6,Unit.CUP);
-           RecipeIngredient recIngr2=new RecipeIngredient(ingredient2,300,Unit.GRAMMS);
-           RecipeIngredient recIngr3=new RecipeIngredient(ingredient3,100,Unit.GRAMMS);
-           RecipeIngredient recIngr4=new RecipeIngredient(ingredient4,3,Unit.PIECE);
+            RecipeIngredient recIngr1 = new RecipeIngredient(ingredient1, 6, Unit.CUP);
+            RecipeIngredient recIngr2 = new RecipeIngredient(ingredient2, 300, Unit.GRAMMS);
+            RecipeIngredient recIngr3 = new RecipeIngredient(ingredient3, 100, Unit.GRAMMS);
+            RecipeIngredient recIngr4 = new RecipeIngredient(ingredient4, 3, Unit.PIECE);
 
-           recIngrList.add(recIngr1);
-           recIngrList.add(recIngr2);
-           recIngrList.add(recIngr3);
-           recIngrList.add(recIngr4);
+            recIngrList.add(recIngr1);
+            recIngrList.add(recIngr2);
+            recIngrList.add(recIngr3);
+            recIngrList.add(recIngr4);
 
-           this.recipeIngredientService.saveRecipeIngredientList(recIngrList);
+            this.recipeIngredientService.saveRecipeIngredientList(recIngrList);
 
-           Recipe recipe1=new Recipe(
-                   "Chicken",
-                   Difficulty.EASY,
-                   10,
-                   15,
-                   9,
-                   "1. Mix" +
-                           " 2.Cook ",
+            Recipe recipe1 = new Recipe(
+                    "Chicken",
+                    Difficulty.EASY,
+                    10,
+                    15,
+                    9,
+                    "1. Mix" +
+                            " 2.Cook ",
                     recIngrList,
-                   332233L,
-                   specialTags);
-           this.recipeService.createRecipe(recipe1);
+                    332233L,
+                    tag1);
+            this.recipeService.createRecipe(recipe1);
 
            /*----RecipeRequest----*
 
@@ -167,31 +168,38 @@ public class RecipeController {
                        2.Create Tag in database and Tag list.
                        3.Create RecipeIngredients for a recipe in database and List.
                        4.Create Recipe with RecipeIngredients and Tag list in database.      */
-           
-                       List<RecipeIngredient> recipeIngredientList=new ArrayList<>();
-                       List<Tag> tagsList=new ArrayList<>();
 
-                       model.addAttribute("ingredientList",recipeIngredientList);
-                       model.addAttribute("tagList",tagsList);
+            List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
-           /* RecipeIngredient recIngr11=new RecipeIngredient(recipeRequest.getIngredient(),
-            recipeRequest.getQuantity(),recipeRequest.getUnit());
-            Recipe recipe2=new Recipe(
-                   recipeRequest.getName(),
-                   recipeRequest.getDifficultyLevel(),
-                   Integer.parseInt(String.valueOf(recipeRequest.getRating())),
-                   recipeRequest.getCookingTime(),
-                   Integer.parseInt(String.valueOf(recipeRequest.getPortionSize())),
-                   recipeRequest.getCookingSteps(),
-                   Long.valueOf(recipeRequest.getCreator()),
-                   recipeRequest.getTag());
-                    ty())),UpperCase()));*/
+            model.addAttribute("ingredientList", recipeIngredientList);
 
-           return "redirect:recipes?status=RECIPE-CREATE_SUCCESS";
-       }
-       catch (Exception exception){
-           exception.printStackTrace();
-           return "redirect:recipe?status=RECIPE-CREATE_FAILED&message=" + exception.getMessage();
+            Ingredient ingredient11 = new Ingredient(recipeRequest.getIngredient());
+            ingredientService.createIngredient(ingredient11);
+
+            RecipeIngredient recIngr11 = new RecipeIngredient(ingredient11,
+                    recipeRequest.getQuantity(), Unit.valueOf(recipeRequest.getUnit().toUpperCase()));
+            recipeIngredientList.add(recIngr11);
+            recipeIngredientService.createRecipeIngredient(recIngr11);
+
+            Tag tag11 = new Tag(recipeRequest.getTag());
+            tagService.createTag(tag11);
+            Recipe recipe2 = new Recipe(
+                    recipeRequest.getName(),
+                    Difficulty.valueOf(recipeRequest.getDifficultyLevel().toUpperCase()),
+                    Integer.parseInt(String.valueOf(recipeRequest.getRating())),
+                    recipeRequest.getCookingTime(),
+                    Integer.parseInt(String.valueOf(recipeRequest.getPortionSize())),
+                    recipeRequest.getCookingSteps(),
+                    recipeIngredientList,
+                    Long.valueOf(recipeRequest.getCreator()),
+                    tag11);
+
+            recipeService.createRecipe(recipe2);
+
+            return "redirect:recipes?status=RECIPE-CREATE_SUCCESS";
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return "redirect:recipe?status=RECIPE-CREATE_FAILED&message=" + exception.getMessage();
         }
     }
 
