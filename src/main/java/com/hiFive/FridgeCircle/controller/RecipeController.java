@@ -46,7 +46,8 @@ public class RecipeController {
     @GetMapping("/recipes")
     public String showAllRecipesPage(Model model) {
         List<Recipe> allRecipes = this.recipeService.findAll();
-
+        System.out.println("Find  ALL result");
+        allRecipes.forEach(recipe->System.out.println(recipe));
         model.addAttribute("recipeList", allRecipes);
         return "recipes";
 
@@ -55,6 +56,8 @@ public class RecipeController {
     @GetMapping("/recipes/{searchString}")
     public String searchRecipeNameTagIngredient(@PathVariable(required = false) String searchString, Model model) {
         List<Recipe> searchedRecipes = this.recipeService.findAllByString(searchString);
+        System.out.println("Search results for: " + searchString);
+        searchedRecipes.forEach(recipe->System.out.println(recipe));
         model.addAttribute("searchedRecipeList", searchedRecipes);
         // search Recipe by Name by Tag by Ingredient and add to list
         //model pass List to html
