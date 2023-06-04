@@ -71,7 +71,7 @@ public class RecipeController {
         List<Recipe> searchedRecipes = this.recipeService.findAllByString(searchString);
         System.out.println("Search results for: " + searchString);
         searchedRecipes.forEach(recipe->System.out.println(recipe));
-        model.addAttribute("searchedRecipeList", searchedRecipes);
+        model.addAttribute("recipeList", searchedRecipes);
         // search Recipe by Name by Tag by Ingredient and add to list
         //model pass List to html
         return "recipes";
