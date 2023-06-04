@@ -1,10 +1,10 @@
 package com.hiFive.FridgeCircle.entity;
 
 public enum Unit {
-    GRAMMS,
-    KILOGRAMMS,
+    GRAMS,
+    KILOGRAMS,
     LITTER,
-    MILILITTER,
+    MILLILITER,
     TABLESPOON,
     TEASPOON,
     CUP,

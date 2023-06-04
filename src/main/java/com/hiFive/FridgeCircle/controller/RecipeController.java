@@ -138,8 +138,8 @@ public class RecipeController {
             this.tagService.createTag(tag1);
 
             RecipeIngredient recIngr1 = new RecipeIngredient(ingredient1, 6, Unit.CUP);
-            RecipeIngredient recIngr2 = new RecipeIngredient(ingredient2, 300, Unit.GRAMMS);
-            RecipeIngredient recIngr3 = new RecipeIngredient(ingredient3, 100, Unit.GRAMMS);
+            RecipeIngredient recIngr2 = new RecipeIngredient(ingredient2, 300, Unit.GRAMS);
+            RecipeIngredient recIngr3 = new RecipeIngredient(ingredient3, 100, Unit.GRAMS);
             RecipeIngredient recIngr4 = new RecipeIngredient(ingredient4, 3, Unit.PIECE);
 
             recIngrList.add(recIngr1);

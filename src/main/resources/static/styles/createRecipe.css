@@ -5,6 +5,18 @@
     border-width: 1px;
     border-style: solid;
 }
+.difficultyBox {
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 50px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.difficultyBox:focus {
+    outline: none;
+    border-color: #6c757d;
+}
 
 .star-rating {
     display: inline-block;
@@ -39,4 +51,17 @@
     border-radius: 50px;
     color: green;
 
+}
+
+.unit-select {
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 50px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.unit-select:focus {
+    outline: none;
+    border-color: #6c757d;
 }

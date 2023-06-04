@@ -14,7 +14,7 @@
 <form method="post" action="/recipe">
     <div class="p-2">
         <label>Recipe name</label>
-        <input class="inputBox" name="name" type="text" required>
+        <input class="inputBox" name="name" type="text">
     </div>
     <div class="p-2">
         <label>Difficulty level</label>
@@ -37,27 +37,39 @@
     </div>
     <div class="p-2">
         <label>Cooking time</label>
-        <input class="inputBox" name="cookingTime" type="text" required>
+        <input class="inputBox" name="cookingTime" type="text">
     </div>
     <div class="p-2">
         <label>Portions</label>
-        <input class="inputBox" name="portionSize" type="text" required>
+        <input class="inputBox" name="portionSize" type="text">
     </div>
     <div class="p-2">
         <label>Ingredients</label>
-        <input class="inputBox" name="ingredient" type="text" required>
+        <input class="inputBox" name="ingredient" type="text">
     </div>
     <div class="p-2">
         <label>Quantity</label>
-        <input class="inputBox" name="quantity" type="text" required>
+        <input class="inputBox" name="quantity" type="text">
     </div>
     <div class="p-2">
         <label>Unit</label>
-        <input class="inputBox" name="unit" type="text" required>
+        <select class="inputBox" name="unit">
+            <option value="">Select Unit</option>
+            <option value="GRAMS">GRAMS</option>
+            <option value="KILOGRAMS">KILOGRAMS</option>
+            <option value="LITTER">LITTER</option>
+            <option value="MILLILITER">MILLILITER</option>
+            <option value="TABLESPOON">TABLESPOON</option>
+            <option value="TEASPOON">TEASPOON</option>
+            <option value="CUP">CUP</option>
+            <option value="OUNCE">OUNCE</option>
+            <option value="POUND">POUND</option>
+            <option value="PIECE">PIECE</option>
+        </select>
     </div>
     <div class="p-2">
         <label>Cooking steps</label>
-        <input class="inputBox" name="cookingSteps" type="textarea" required>
+        <input class="inputBox" name="cookingSteps" type="textarea">
     </div>
     <div class="p-2">
         <label>Creator</label>
