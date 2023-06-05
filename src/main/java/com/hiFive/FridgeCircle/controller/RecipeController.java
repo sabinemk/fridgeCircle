@@ -89,16 +89,23 @@ public class RecipeController {
 
     }
 
-//    @GetMapping("/recipes/search")
-//    public String searchRecipesPage(@RequestParam String query, Model model) {
-//        List<Recipe> searchResults = recipeService.findAllByString(query);
-//        model.addAttribute("recipeList", searchResults);
-//        return "recipes";
-//    }
-    //my idea was to just show the recipe according to a search. maybe it would
-    //be easier for accessing the database? instead of the various tags.
+   @GetMapping("/updaterecipe/{id}")
+          public String updateRecipe(@PathVariable Long id, Model model) {
+              Recipe recipeToUpdate=recipeService.getRecipeById(id);
+              model.addAttribute("recipe", recipeToUpdate);
+              return "updateRecipe";
+          }
 
 
+          //my idea was to just show the recipe according to a search. maybe it would
+          //be easier for accessing the database? instead of the various tags.
+
+    @PostMapping("/updaterecipe/{id}")
+    public String updateRecipe(@PathVariable Long id, RecipeRequest recipeRequest, Model model){
+            Recipe recipeToUpdate=recipeService.getRecipeById(id);
+            model.addAttribute("recipe", recipeToUpdate);
+            return "redirect:recipe/"+id+"?status=RECIPE_UPDATED_SUCCESSFULLY";
+        }
 
     @GetMapping("/createrecipe")
     public String showRecipePage(Model model) {
