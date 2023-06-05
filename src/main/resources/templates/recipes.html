@@ -39,6 +39,7 @@
                     </li>
                 </ul>
                 <p>Created By: <span th:text="${recipe.creatorId}"></span></p>
+                <a th:href="${'/recipe/'+recipe.getId()}">Recipe</a>
             </li>
         </ul>
     </div>

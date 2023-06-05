@@ -71,7 +71,7 @@ public class RecipeController {
         List<Recipe> searchedRecipes = this.recipeService.findAllByString(searchString);
         System.out.println("Search results for: " + searchString);
         searchedRecipes.forEach(recipe->System.out.println(recipe));
-        model.addAttribute("searchedRecipeList", searchedRecipes);
+        model.addAttribute("recipeList", searchedRecipes);
         // search Recipe by Name by Tag by Ingredient and add to list
         //model pass List to html
         return "recipes";
@@ -89,16 +89,23 @@ public class RecipeController {
 
     }
 
-//    @GetMapping("/recipes/search")
-//    public String searchRecipesPage(@RequestParam String query, Model model) {
-//        List<Recipe> searchResults = recipeService.findAllByString(query);
-//        model.addAttribute("recipeList", searchResults);
-//        return "recipes";
-//    }
-    //my idea was to just show the recipe according to a search. maybe it would
-    //be easier for accessing the database? instead of the various tags.
+   @GetMapping("/updaterecipe/{id}")
+          public String updateRecipe(@PathVariable Long id, Model model) {
+              Recipe recipeToUpdate=recipeService.getRecipeById(id);
+              model.addAttribute("recipe", recipeToUpdate);
+              return "updateRecipe";
+          }
 
 
+          //my idea was to just show the recipe according to a search. maybe it would
+          //be easier for accessing the database? instead of the various tags.
+
+    @PostMapping("/updaterecipe/{id}")
+    public String updateRecipe(@PathVariable Long id, RecipeRequest recipeRequest, Model model){
+            Recipe recipeToUpdate=recipeService.getRecipeById(id);
+            model.addAttribute("recipe", recipeToUpdate);
+            return "redirect:recipe/"+id+"?status=RECIPE_UPDATED_SUCCESSFULLY";
+        }
 
     @GetMapping("/createrecipe")
     public String showRecipePage(Model model) {

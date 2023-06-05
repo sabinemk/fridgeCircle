@@ -11,77 +11,29 @@
 <header th:replace="~{fragments/header :: standard-header}"></header>
 
 <h3 class="margin-top">Recipe page</h3>
-<form method="post" action="/recipe">
-    <div class="p-2">
-        <label>Recipe name</label>
-        <input class="inputBox" name="name" type="text">
-    </div>
-    <div class="p-2">
-        <label>Difficulty level</label>
-        <input class="inputBox" name="difficultyLevel" type="text">
-    </div>
-    <div class="p-2">
-        <label>Rating</label>
-        <div class="star-rating">
-            <p type="radio" id="star1" name="rating" value="1">
-            <label for="star1"></label>
-            <input type="radio" id="star2" name="rating" value="2">
-            <label for="star2"></label>
-            <input type="radio" id="star3" name="rating" value="3">
-            <label for="star3"></label>
-            <input type="radio" id="star4" name="rating" value="4">
-            <label for="star4"></label>
-            <input type="radio" id="star5" name="rating" value="5">
-            <label for="star5"></label>
-        </div>
-    </div>
-    <div class="p-2">
-        <label>Cooking time</label>
-        <input class="inputBox" name="cookingTime" type="text">
-    </div>
-    <div class="p-2">
-        <label>Portions</label>
-        <input class="inputBox" name="portionSize" type="text">
-    </div>
-    <div class="p-2">
-        <label>Ingredients</label>
-        <input class="inputBox" name="ingredient" type="text">
-    </div>
-    <div class="p-2">
-        <label>Quantity</label>
-        <input class="inputBox" name="quantity" type="text">
-    </div>
-    <div class="p-2">
-        <label>Unit</label>
-        <select class="inputBox" name="unit">
-            <option value="">Select Unit</option>
-            <option value="GRAMS">GRAMS</option>
-            <option value="KILOGRAMS">KILOGRAMS</option>
-            <option value="LITTER">LITTER</option>
-            <option value="MILLILITER">MILLILITER</option>
-            <option value="TABLESPOON">TABLESPOON</option>
-            <option value="TEASPOON">TEASPOON</option>
-            <option value="CUP">CUP</option>
-            <option value="OUNCE">OUNCE</option>
-            <option value="POUND">POUND</option>
-            <option value="PIECE">PIECE</option>
-        </select>
-    </div>
-    <div class="p-2">
-        <label>Cooking steps</label>
-        <input class="inputBox" name="cookingSteps" type="textarea">
-    </div>
-    <div class="p-2">
-        <label>Creator</label>
-        <input class="inputBox" name="creator" type="text">
-    </div>
-    <div class="p-2">
-        <label>Tag</label>
-        <input class="inputBox" name="tag" type="text">
-    </div>
-    <button class="button" type="submit">Create</button>
-    <button class="button" type="reset">Clear</button>
-</form>
+<div class="recipe-list">
+    <h2>Recipe</h2>
+    <ul>
+            <h3 th:text="${recipe.name}"></h3>
+            <p>Difficulty Level: <span th:text="${recipe.difficultyLevel}"></span></p>
+            <p>Rating: <span th:text="${recipe.rating}"></span></p>
+            <p>Cooking Time: <span th:text="${recipe.cookingTime}"></span> minutes</p>
+            <p>Portion Size: <span th:text="${recipe.portionSize}"></span></p>
+            <p>Cooking Steps: <span th:text="${recipe.cookingSteps}"></span></p>
+            <p>Ingredients:</p>
+            <ul>
+                <li th:each="ingredient : ${recipe.ingredientList}">
+                    <span th:text="${ingredient.quantity}"></span>
+                    <span th:text="${ingredient.unit}"></span>
+                    <span th:text="${ingredient.ingredient.name}"></span>
+                </li>
+            </ul>
+            <p>Created By: <span th:text="${recipe.creatorId}"></span></p>
+    </ul>
+</div>
+    <a th:href="${'/recipes'}"> Back to all recipes</a>
+    <button class="button" type="submit" th:href="${'/updaterecipe/'+recipe.getId()}">Update</button>
+
 <footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </body>
 </html>

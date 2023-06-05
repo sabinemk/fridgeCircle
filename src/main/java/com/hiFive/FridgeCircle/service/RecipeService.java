@@ -21,6 +21,8 @@ public class RecipeService {
         this.recipeRepository.save(recipeToCreate);
     }
 
+    public void updateRecipe(Recipe recipeToUpdate){this.recipeRepository.save(recipeToUpdate);}
+
     public Recipe findByNamePart(String recipeNamePart) {
         return this.recipeRepository.findByNameContainsIgnoreCase(recipeNamePart);
     }
