@@ -199,10 +199,17 @@ public class RecipeController {
 
             recipeService.createRecipe(recipe2);
 
+            model.addAttribute("status", "success");
+            model.addAttribute("message", "Recipe created sucessfully!");
+
             return "redirect:recipes?status=RECIPE-CREATE_SUCCESS";
         } catch (Exception exception) {
             exception.printStackTrace();
-            return "redirect:recipe?status=RECIPE-CREATE_FAILED&message=" + exception.getMessage();
+
+            model.addAttribute("status", "error");
+            model.addAttribute("message", "Failed to create a recipe.."+ exception.getMessage());
+
+            return "redirect:recipes";
         }
     }
 

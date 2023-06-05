@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Recipe creation page</title>
@@ -12,6 +12,13 @@
 <header th:replace="~{fragments/header :: standard-header}"></header>
 
 <h3 class="margin-top">Recipe creation page</h3>
+<div th:if="${param.status}">
+    <div th:switch="${param.status}">
+        <p th:case="'success'" class="success-message" th:text="${param.message}"></p>
+        <p th:case="'error'" class="error-message" th:text="${param.message}"></p>
+    </div>
+</div>
+
 <form method="post" action="/createrecipe">
     <div class="p-2">
         <label>Enter recipe name</label>
@@ -53,8 +60,8 @@
         <label>Enter ingredient</label>
         <input class="inputBox" name="ingredient" type="text">
     </div>
-    <div class="p-2">
-        <label>Enter quantity</label>
+
+    <label>Enter quantity</label>
         <input class="inputBox" name="quantity" type="text">
     </div>
     <div class="p-2">
@@ -85,6 +92,15 @@
         <label>Enter tag</label>
         <input class="inputBox" name="tag" type="text">
     </div>
+    <div class="p-2">
+        <label>Enter picture URL</label>
+        <input class="inputBox" name="pictureUrl" type="url">
+    </div>
+    <!--<div class="p-2">
+        <label>Upload a picture</label>
+        <input class="inputBox" name="picture" type="file">
+    </div> -->
+
     <button class="button" type="submit">Create</button>
     <button class="button" type="reset">Clear</button>
 </form>
