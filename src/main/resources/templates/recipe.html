@@ -11,29 +11,30 @@
 <header th:replace="~{fragments/header :: standard-header}"></header>
 
 <h3 class="margin-top">Recipe page</h3>
+
 <div class="recipe-list">
     <h2>Recipe</h2>
     <ul>
-            <h3 th:text="${recipe.name}"></h3>
-            <p>Difficulty Level: <span th:text="${recipe.difficultyLevel}"></span></p>
-            <p>Rating: <span th:text="${recipe.rating}"></span></p>
-            <p>Cooking Time: <span th:text="${recipe.cookingTime}"></span> minutes</p>
-            <p>Portion Size: <span th:text="${recipe.portionSize}"></span></p>
-            <p>Cooking Steps: <span th:text="${recipe.cookingSteps}"></span></p>
-            <p>Ingredients:</p>
-            <ul>
-                <li th:each="ingredient : ${recipe.ingredientList}">
-                    <span th:text="${ingredient.quantity}"></span>
-                    <span th:text="${ingredient.unit}"></span>
-                    <span th:text="${ingredient.ingredient.name}"></span>
-                </li>
-            </ul>
-            <p>Created By: <span th:text="${recipe.creatorId}"></span></p>
+        <h3 th:text="${recipe.name}"></h3>
+        <p>Difficulty Level: <span th:text="${recipe.difficultyLevel}"></span></p>
+        <p>Rating: <span th:text="${recipe.rating}"></span></p>
+        <p>Cooking Time: <span th:text="${recipe.cookingTime}"></span> minutes</p>
+        <p>Portion Size: <span th:text="${recipe.portionSize}"></span></p>
+        <p>Cooking Steps: <span th:text="${recipe.cookingSteps}"></span></p>
+        <p>Ingredients:</p>
+        <ul>
+            <li th:each="ingredient : ${recipe.ingredientList}">
+                <span th:text="${ingredient.quantity}"></span>
+                <span th:text="${ingredient.unit}"></span>
+                <span th:text="${ingredient.ingredient.name}"></span>
+            </li>
+        </ul>
+        <p>Created By: <span th:text="${recipe.creatorId}"></span></p>
     </ul>
 </div>
-    <a th:href="${'/recipes'}"> Back to all recipes</a>
-    <button class="button" type="submit" th:href="${'/updaterecipe/'+recipe.getId()}">Update</button>
-
+<a th:href="${'/recipes'}"> Back to all recipes</a>
+<a th:href="${'/updaterecipe/'+recipe.getId()}">Update</a>
+<a th:href="${'/deleterecipe/'+recipe.getId()}">Delete</a>
 <footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </body>
 </html>

@@ -12,16 +12,16 @@
 <header th:replace="~{fragments/header :: standard-header}"></header>
 
 <h3 class="margin-top">Recipe update page</h3>
-<form method="post" th:action="${'updateRecipe/'+recipe.getId()}">
+<form method="post" th:action="${'/updaterecipe/'+recipe.getId()}">
   <div class="recipe-list">
     <h2>Recipe</h2>
     <ul>
       <h3 th:text="${recipe.name}"></h3>
-      <p>Difficulty Level: <textarea th:text="${recipe.difficultyLevel}"></textarea></p>
-      <p>Rating: <textarea th:text="${recipe.rating}"></textarea></p>
-      <p>Cooking Time: <textarea th:text="${recipe.cookingTime}"></textarea> minutes</p>
-      <p>Portion Size: <textarea th:text="${recipe.portionSize}"></textarea></p>
-      <p>Cooking Steps: <textarea th:text="${recipe.cookingSteps}"></textarea></p>
+      <p>Difficulty Level: <textarea th:text="${recipe.difficultyLevel}" name="difficultyLevel"></textarea></p>
+      <p>Rating: <textarea th:text="${recipe.rating}" name="rating"></textarea></p>
+      <p>Cooking Time: <textarea th:text="${recipe.cookingTime}" name="cookingTime"></textarea> minutes</p>
+      <p>Portion Size: <textarea th:text="${recipe.portionSize}" name="portionSize"></textarea></p>
+      <p>Cooking Steps: <textarea th:text="${recipe.cookingSteps}" name="cookingSteps"></textarea></p>
       <p>Ingredients:</p>
       <ul>
         <li th:each="ingredient : ${recipe.ingredientList}">
@@ -34,7 +34,7 @@
     </ul>
   </div>
   <a th:href="${'/recipes'}"> Back to all recipes</a>
-  <button class="button" type="submit" th:href="${'/updaterecipe/'+recipe.getId()}">Update</button>
+  <button class="button" type="submit">Update</button>
 <footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </form>
 </body>

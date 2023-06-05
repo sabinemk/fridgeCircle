@@ -22,7 +22,7 @@ public class Recipe {
     private Integer cookingTime;
     private Integer portionSize;
     private String cookingSteps;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     private List<RecipeIngredient> ingredientList;
     private Long creatorId;
     @OneToOne
