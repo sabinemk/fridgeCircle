@@ -44,12 +44,15 @@
 }
 
 .star-rating input[type="radio"]:checked ~ label {
-    color: green;
+    color: #1a853f;
 }
 
 .button {
-    border-radius: 50px;
-    color: green;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #1a853f;
+    color: #ffffff;
 
 }
 
@@ -64,4 +67,16 @@
 .unit-select:focus {
     outline: none;
     border-color: #6c757d;
+}
+
+.select-tag {
+    padding: 8px;
+    font-size: 12px;
+    border-radius: 50px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.add-ingredient-button {
+    border-radius: 50px;
 }

@@ -1,6 +1,7 @@
 package com.hiFive.FridgeCircle.controller;
 
 import com.hiFive.FridgeCircle.entity.*;
+import com.hiFive.FridgeCircle.repository.RecipeRepository;
 import com.hiFive.FridgeCircle.service.IngredientService;
 import com.hiFive.FridgeCircle.service.RecipeIngredientService;
 import com.hiFive.FridgeCircle.service.RecipeService;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.hiFive.FridgeCircle.entity.Recipe;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,8 @@ public class RecipeController {
     private IngredientService ingredientService;
 
     private RecipeIngredientService recipeIngredientService;
+    RecipeRepository recipeRepository;
+    Recipe recipe;
 
     @Autowired
     public RecipeController(RecipeService recipeService,
@@ -109,6 +114,8 @@ public class RecipeController {
 
     @GetMapping("/createrecipe")
     public String showRecipePage(Model model) {
+        model.addAttribute("recipe", new Recipe());
+
         //get difficulty level enum
         //get ingredients list entity
         //get tags entity
@@ -123,6 +130,7 @@ public class RecipeController {
 
     @PostMapping("/createrecipe")
     public String handleRecipeCreation(RecipeRequest recipeRequest, Model model) {
+        System.out.println(recipeRequest);
         try {
            /*---manual creation of recipe:
             1.Create Ingredients in database.
@@ -130,6 +138,9 @@ public class RecipeController {
             3.Create RecipeIngredients for a recipe in database and List.
             4.Create Recipe with RecipeIngredients and Tag list in database.
             ---*/
+
+            recipeRepository.save(recipe);
+
             List<Tag> specialTags = new ArrayList<>();
             List<RecipeIngredient> recIngrList = new ArrayList<>();
 

@@ -3,7 +3,40 @@
     align-content: center;
     background-color: #205B28;
     color: #ffffff;
-    padding: 10px 20px;
-    margin: 0 auto;
+    padding: 30px 20px;
+    opacity: inherit;
 }
 
+.activeBody {
+    margin-left: 50px;
+    margin-right: 50px;
+    list-style-type: none;
+}
+
+.create-button {
+    background-color: #1a853f;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.create-button:hover {
+    opacity: 0.7;
+}
+
+.recipe-button {
+    background-color: #1a853f;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.recipe-button:hover {
+    opacity: 0.7;
+}

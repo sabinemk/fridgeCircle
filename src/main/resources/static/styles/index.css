@@ -1,8 +1,12 @@
-
 .containerHero {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     text-align: center;
+    /*position: relative;*/
+    /*background: linear-gradient(to bottom, rgba(216, 212, 217, 0.99), #ffffff),*/
+    /*    linear-gradient(to top, rgba(216, 212, 217, 0.99), #ffffff),*/
+    /*    linear-gradient(to left, rgba(216, 212, 217, 0.99), #ffffff),*/
+    /*    linear-gradient(to right, rgba(216, 212, 217, 0.99), #ffffff);*/
 }
 
 .hero {

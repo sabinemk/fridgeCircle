@@ -10,7 +10,7 @@
 </head>
 <body>
 <header th:replace="~{fragments/header :: standard-header}"></header>
-
+<!-- we can provide data to fragment-->
 <h3 class="margin-top">Recipe creation page</h3>
 <div th:if="${param.status}">
     <div th:switch="${param.status}">
@@ -19,14 +19,14 @@
     </div>
 </div>
 
-<form method="post" action="/createrecipe">
+<form th:object="${recipe}" method="post" action="/createrecipe">
     <div class="p-2">
         <label>Enter recipe name</label>
         <input class="inputBox" name="name" type="text">
     </div>
     <div class="p-2">
         <label>Difficulty</label>
-        <select class="difficultyBox" name="unit">
+        <select class="difficultyBox" name="difficultyLevel">
             <option value="">Select level</option>
             <option value="EASY">EASY</option>
             <option value="MODERATE">MODERATE</option>
@@ -59,15 +59,56 @@
     <div class="p-2">
         <label>Enter ingredient</label>
         <input class="inputBox" name="ingredient" type="text">
+        <button class="add-ingredient-button" type="button" onclick="addIngredient()">+</button>
     </div>
 
-    <label>Enter quantity</label>
+    <script>
+        function addIngredient() {
+            const ingredientDiv = document.createElement('div');
+            ingredientDiv.classList.add('p-2');
+
+
+            const ingredient = document.createElement('input');
+            ingredient.classList.add('inputBox');
+            ingredient.name = 'ingredient';
+            ingredient.type = 'text';
+
+            ingredientDiv.appendChild(ingredient);
+
+            const button = document.querySelector('.add-ingredient-button');
+            button.parentNode.insertBefore(ingredientDiv, button);
+        }
+    </script>
+
+
+
+    <div class="p-2">
+    <label>Enter ingredient quantity</label>
+
         <input class="inputBox" name="quantity" type="text">
+        <button class="add-quantity-button" type="button" onclick="addQuantity()">+</button>
     </div>
+    <script>
+        function addQuantity() {
+            const quantityDiv = document.createElement('div');
+            quantityDiv.classList.add('p-2');
+
+            const quantity = document.createElement('input');
+            quantity.classList.add('inputBox');
+            quantity.name = 'quantity';
+            quantity.type = 'text';
+
+            quantityDiv.appendChild(quantity);
+
+            const button = document.querySelector('.add-quantity-button');
+            button.parentNode.insertBefore(quantityDiv, button);
+        }
+    </script>
+
     <div class="p-2">
         <label>Unit</label>
         <select class="unit-select" name="unit">
-            <option value="">Select Unit</option>
+            <option value="">Select unit</option>
             <option value="GRAMS">GRAMS</option>
             <option value="KILOGRAMS">KILOGRAMS</option>
             <option value="LITTER">LITTER</option>
@@ -80,17 +121,28 @@
             <option value="PIECE">PIECE</option>
         </select>
     </div>
+
     <div class="p-2">
         <label>Enter cooking steps</label>
-        <input class="inputBox" name="cookingSteps" type="textarea">
+        <textarea class="inputBox" id="cookingSteps" name="cookingSteps" rows="2" cols="30"></textarea>
     </div>
     <div class="p-2">
         <label>Enter creator</label>
         <input class="inputBox" name="creator" type="text">
     </div>
     <div class="p-2">
-        <label>Enter tag</label>
-        <input class="inputBox" name="tag" type="text">
+        <label>Tags</label>
+        <select class="select-tag" name="tag" type="text">
+            <option value="">Select tag</option>
+            <option value="BREAKFAST">Breakfast</option>
+            <option value="LUNCH">Lunch</option>
+            <option value="DINNER">Dinner</option>
+            <option value="DESSERT">Dessert</option>
+            <option value="SNACK">Snack</option>
+            <option value="SAUCE">Sauce</option>
+            <option value="SIDE_DISH">Side dish</option>
+            <option value="APPETISER">Appetiser</option>
+        </select>
     </div>
     <div class="p-2">
         <label>Enter picture URL</label>
