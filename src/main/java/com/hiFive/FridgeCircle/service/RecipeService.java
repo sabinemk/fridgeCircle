@@ -1,6 +1,7 @@
 package com.hiFive.FridgeCircle.service;
 
 import com.hiFive.FridgeCircle.entity.Recipe;
+import com.hiFive.FridgeCircle.exception.RecipeException;
 import com.hiFive.FridgeCircle.repository.RecipeRepository;
 import com.hiFive.FridgeCircle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.List;
 @Service
 public class RecipeService {
     RecipeRepository recipeRepository;
+    List<Recipe> recipeList;
 
     @Autowired
     public RecipeService(RecipeRepository recipeRepository) {
@@ -22,6 +24,14 @@ public class RecipeService {
     }
 
     public void updateRecipe(Recipe recipeToUpdate){this.recipeRepository.save(recipeToUpdate);}
+
+    public void deleteRecipe(Recipe recipe) throws RecipeException {
+        this.recipeList=this.findAll();
+        if(!this.recipeList.contains(recipe)){
+            throw new RecipeException("Recipe was not found");
+        }
+        this.recipeRepository.delete(recipe);
+    }
 
     public Recipe findByNamePart(String recipeNamePart) {
         return this.recipeRepository.findByNameContainsIgnoreCase(recipeNamePart);

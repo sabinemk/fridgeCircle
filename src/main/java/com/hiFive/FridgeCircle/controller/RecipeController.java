@@ -2,6 +2,7 @@ package com.hiFive.FridgeCircle.controller;
 
 import com.hiFive.FridgeCircle.entity.*;
 import com.hiFive.FridgeCircle.repository.RecipeRepository;
+import com.hiFive.FridgeCircle.exception.RecipeException;
 import com.hiFive.FridgeCircle.service.IngredientService;
 import com.hiFive.FridgeCircle.service.RecipeIngredientService;
 import com.hiFive.FridgeCircle.service.RecipeService;
@@ -52,7 +53,7 @@ public class RecipeController {
     public String showAllRecipesPage(Model model) {
         List<Recipe> allRecipes = this.recipeService.findAll();
         System.out.println("Find  ALL result");
-        allRecipes.forEach(recipe->System.out.println(recipe));
+        allRecipes.forEach(recipe -> System.out.println(recipe));
         model.addAttribute("recipeList", allRecipes);
         return "recipes";
 
@@ -70,12 +71,11 @@ public class RecipeController {
 //    }
 
 
-
     @GetMapping("/recipes/{searchString}")
     public String searchRecipeNameTagIngredient(@PathVariable(required = false) String searchString, Model model) {
         List<Recipe> searchedRecipes = this.recipeService.findAllByString(searchString);
         System.out.println("Search results for: " + searchString);
-        searchedRecipes.forEach(recipe->System.out.println(recipe));
+        searchedRecipes.forEach(recipe -> System.out.println(recipe));
         model.addAttribute("recipeList", searchedRecipes);
         // search Recipe by Name by Tag by Ingredient and add to list
         //model pass List to html
@@ -94,23 +94,45 @@ public class RecipeController {
 
     }
 
-   @GetMapping("/updaterecipe/{id}")
-          public String updateRecipe(@PathVariable Long id, Model model) {
-              Recipe recipeToUpdate=recipeService.getRecipeById(id);
-              model.addAttribute("recipe", recipeToUpdate);
-              return "updateRecipe";
-          }
+    @GetMapping("/updaterecipe/{id}")
+    public String updateRecipe(@PathVariable Long id, Model model) {
+        Recipe recipeToUpdate = recipeService.getRecipeById(id);
+        model.addAttribute("recipe", recipeToUpdate);
+        return "updateRecipe";
+    }
 
 
-          //my idea was to just show the recipe according to a search. maybe it would
-          //be easier for accessing the database? instead of the various tags.
+    //my idea was to just show the recipe according to a search. maybe it would
+    //be easier for accessing the database? instead of the various tags.
 
     @PostMapping("/updaterecipe/{id}")
-    public String updateRecipe(@PathVariable Long id, RecipeRequest recipeRequest, Model model){
-            Recipe recipeToUpdate=recipeService.getRecipeById(id);
-            model.addAttribute("recipe", recipeToUpdate);
-            return "redirect:recipe/"+id+"?status=RECIPE_UPDATED_SUCCESSFULLY";
+    public String updateRecipe(@PathVariable Long id, RecipeRequest recipeRequest, Model model) {
+        Recipe recipeToUpdate = recipeService.getRecipeById(id);
+        model.addAttribute("recipe", recipeToUpdate);
+        recipeToUpdate.setDifficultyLevel(Difficulty.valueOf(recipeRequest.getDifficultyLevel().toUpperCase()));
+        recipeToUpdate.setRating(Integer.parseInt(String.valueOf(recipeRequest.getRating())));
+        recipeToUpdate.setCookingTime(recipeRequest.getCookingTime());
+        recipeToUpdate.setPortionSize(Integer.parseInt(String.valueOf(recipeRequest.getPortionSize())));
+        recipeToUpdate.setCookingSteps(recipeRequest.getCookingSteps());
+        //ingredientList
+        //Long.valueOf(recipeRequest.getCreator()),
+        //tag11);
+
+        this.recipeService.updateRecipe(recipeToUpdate);
+
+        return "redirect:/recipe/" + id + "?status=RECIPE_UPDATED_SUCCESSFULLY";
+    }
+
+    @GetMapping("/deleterecipe/{id}")
+    public String deleteRecipe(@PathVariable Long id) {
+        try {
+            Recipe recipeToDelete = this.recipeService.getRecipeById(id);
+            this.recipeService.deleteRecipe(recipeToDelete);
+        } catch (RecipeException exception) {
+            exception.getMessage();
         }
+        return "redirect:recipes/?status=RECIPE_DELETED_SUCCESSFULLY";
+    }
 
     @GetMapping("/createrecipe")
     public String showRecipePage(Model model) {
