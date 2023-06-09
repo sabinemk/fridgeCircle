@@ -30,9 +30,11 @@
             </li>
         </ul>
         <p>Created By: <span th:text="${recipe.creatorId}"></span></p>
+        <img th:src="${recipe.getUrl()}" th:alt="${recipe.getFileName()}" height="120px" />
     </ul>
 </div>
 <a th:href="${'/recipes'}"> Back to all recipes</a>
+<a th:href="${'/images/new/'+recipe.getId()}">Upload image</a>
 <a th:href="${'/updaterecipe/'+recipe.getId()}">Update</a>
 <a th:href="${'/deleterecipe/'+recipe.getId()}">Delete</a>
 <footer th:replace="~{fragments/footer :: standard-footer}"></footer>

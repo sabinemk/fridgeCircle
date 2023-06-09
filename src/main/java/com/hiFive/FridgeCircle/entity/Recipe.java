@@ -27,10 +27,12 @@ public class Recipe {
     private Long creatorId;
     @OneToOne
     private Tag tag;
+    private String fileName;
+    private String url;
 
     public Recipe(String name, Difficulty difficultyLevel, Integer rating,
                   Integer cookingTime, Integer portionSize,
-                  String cookingSteps, List<RecipeIngredient> ingredientList, Long creatorId, Tag tag) {
+                  String cookingSteps, List<RecipeIngredient> ingredientList, Long creatorId, Tag tag,String fileName,String url) {
         this.name = name;
         this.difficultyLevel = difficultyLevel;
         this.rating = rating;
@@ -40,6 +42,8 @@ public class Recipe {
         this.ingredientList=ingredientList;
         this.creatorId = creatorId;
         this.tag=tag;
+        this.fileName=fileName;
+        this.url=url;
     }
 }
 

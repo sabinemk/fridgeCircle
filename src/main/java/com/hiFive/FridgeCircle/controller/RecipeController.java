@@ -1,18 +1,15 @@
 package com.hiFive.FridgeCircle.controller;
 
 import com.hiFive.FridgeCircle.entity.*;
-import com.hiFive.FridgeCircle.repository.RecipeRepository;
 import com.hiFive.FridgeCircle.exception.RecipeException;
-import com.hiFive.FridgeCircle.service.IngredientService;
-import com.hiFive.FridgeCircle.service.RecipeIngredientService;
-import com.hiFive.FridgeCircle.service.RecipeService;
-import com.hiFive.FridgeCircle.service.TagService;
+import com.hiFive.FridgeCircle.service.*;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.hiFive.FridgeCircle.entity.Recipe;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,18 +32,19 @@ public class RecipeController {
     private IngredientService ingredientService;
 
     private RecipeIngredientService recipeIngredientService;
-    RecipeRepository recipeRepository;
-    Recipe recipe;
+    private FileStorageServiceImplementation fileStorageServiceImplementation;
 
     @Autowired
     public RecipeController(RecipeService recipeService,
                             TagService tagService,
                             IngredientService ingredientService,
-                            RecipeIngredientService recipeIngredientService) {
+                            RecipeIngredientService recipeIngredientService,
+                            FileStorageServiceImplementation fileStorageServiceImplementation) {
         this.recipeService = recipeService;
         this.tagService = tagService;
         this.ingredientService = ingredientService;
         this.recipeIngredientService = recipeIngredientService;
+        this.fileStorageServiceImplementation=fileStorageServiceImplementation;
     }
 
     @GetMapping("/recipes")
@@ -131,13 +129,11 @@ public class RecipeController {
         } catch (RecipeException exception) {
             exception.getMessage();
         }
-        return "redirect:recipes/?status=RECIPE_DELETED_SUCCESSFULLY";
+        return "redirect:/recipes?status=RECIPE_DELETED_SUCCESSFULLY";
     }
 
     @GetMapping("/createrecipe")
     public String showRecipePage(Model model) {
-        model.addAttribute("recipe", new Recipe());
-
         //get difficulty level enum
         //get ingredients list entity
         //get tags entity
@@ -150,6 +146,37 @@ public class RecipeController {
         return "createRecipe";
     }
 
+    @GetMapping("/images/new/{id}")
+    public String newImage(@PathVariable Long id,Model model){
+        System.out.println("new image controller");
+        model.addAttribute("recipe",this.recipeService.getRecipeById(id));
+        return "upload_form";
+    }
+    @PostMapping("/images/upload/{id}")
+    public String uploadImage(@PathVariable Long id, Model model,
+                              @RequestParam("file")MultipartFile file)
+    {
+        String message = "";
+
+        try {
+            Recipe recipe=this.recipeService.getRecipeById(id);
+            model.addAttribute("recipe",recipe);
+            System.out.println("Upload images controller");
+            fileStorageServiceImplementation.save(file);
+            recipe.setFileName(file.getOriginalFilename());
+            recipe.setUrl(this.fileStorageServiceImplementation.getRoot().toString().substring(1)+"\\"+file.getOriginalFilename());
+            this.recipeService.updateRecipe(recipe);
+            message = "Uploaded the image successfully: " + file.getOriginalFilename();
+            model.addAttribute("message", message);
+
+        } catch (Exception e) {
+            message = "Could not upload the image: " + file.getOriginalFilename() + ". Error: " + e.getMessage();
+            System.out.println(message);
+            model.addAttribute("message", message);
+        }
+
+        return "upload_form";
+    }
     @PostMapping("/createrecipe")
     public String handleRecipeCreation(RecipeRequest recipeRequest, Model model) {
         System.out.println(recipeRequest);
@@ -160,9 +187,6 @@ public class RecipeController {
             3.Create RecipeIngredients for a recipe in database and List.
             4.Create Recipe with RecipeIngredients and Tag list in database.
             ---*/
-
-            recipeRepository.save(recipe);
-
             List<Tag> specialTags = new ArrayList<>();
             List<RecipeIngredient> recIngrList = new ArrayList<>();
 
@@ -202,8 +226,11 @@ public class RecipeController {
                             " 2.Cook ",
                     recIngrList,
                     332233L,
-                    tag1);
+                    tag1,
+                    "image.jpg",
+                    "/upload/");
             this.recipeService.createRecipe(recipe1);
+
 
            /*----RecipeRequest----*
 
@@ -226,6 +253,8 @@ public class RecipeController {
 
             Tag tag11 = new Tag(recipeRequest.getTag());
             tagService.createTag(tag11);
+
+
             Recipe recipe2 = new Recipe(
                     recipeRequest.getName(),
                     Difficulty.valueOf(recipeRequest.getDifficultyLevel().toUpperCase()),
@@ -235,14 +264,16 @@ public class RecipeController {
                     recipeRequest.getCookingSteps(),
                     recipeIngredientList,
                     Long.valueOf(recipeRequest.getCreator()),
-                    tag11);
+                    tag11,
+                    "",
+                    "");
 
             recipeService.createRecipe(recipe2);
 
             model.addAttribute("status", "success");
             model.addAttribute("message", "Recipe created sucessfully!");
-
-            return "redirect:recipes?status=RECIPE-CREATE_SUCCESS";
+            Long id=recipe2.getId();
+            return "redirect:recipe/"+id+"?status=RECIPE-CREATE_SUCCESS";
         } catch (Exception exception) {
             exception.printStackTrace();
 
