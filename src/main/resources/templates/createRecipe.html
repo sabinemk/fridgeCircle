@@ -26,11 +26,14 @@
     </div>
     <div class="p-2">
         <label>Difficulty</label>
-        <select class="difficultyBox" name="difficultyLevel">
+      <!--  <select class="difficultyBox" name="difficultyLevel">
             <option value="">Select level</option>
             <option value="EASY">EASY</option>
             <option value="MODERATE">MODERATE</option>
             <option value="DIFFICULT">DIFFICULT</option>
+        </select>-->
+        <select class="difficultyBox" id="difficulty" name="difficultyLevel">
+            <option th:each="level : ${T(com.hiFive.FridgeCircle.entity.Difficulty).values()}" th:value="${level}" th:text="${level.getDifficultyName()}"></option>
         </select>
     </div>
     <div class="p-2">
@@ -158,15 +161,6 @@
             <option value="APPETISER">Appetiser</option>
         </select>
     </div>
-    <div class="p-2">
-        <label>Enter picture URL</label>
-        <input class="inputBox" name="pictureUrl" type="url">
-    </div>
-    <div class="p-2">
-        <label>Upload a picture</label>
-        <input class="inputBox" name="picture" type="file">
-    </div>
-
     <button class="button" type="submit">Create</button>
     <button class="button" type="reset">Clear</button>
 </form>
