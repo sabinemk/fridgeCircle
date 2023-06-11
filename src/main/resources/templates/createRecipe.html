@@ -56,56 +56,13 @@
         <label>Enter portions</label>
         <input class="inputBox" name="portionSize" type="text">
     </div>
-    <div class="p-2">
+
+
+    <div class="p-2" id="fields-container">
         <label>Enter ingredient</label>
         <input class="inputBox" name="ingredient" type="text">
-        <button class="add-ingredient-button" type="button" onclick="addIngredient()">+</button>
-    </div>
-
-    <script>
-        function addIngredient() {
-            const ingredientDiv = document.createElement('div');
-            ingredientDiv.classList.add('p-2');
-
-
-            const ingredient = document.createElement('input');
-            ingredient.classList.add('inputBox');
-            ingredient.name = 'ingredient';
-            ingredient.type = 'text';
-
-            ingredientDiv.appendChild(ingredient);
-
-            const button = document.querySelector('.add-ingredient-button');
-            button.parentNode.insertBefore(ingredientDiv, button);
-        }
-    </script>
-
-
-
-    <div class="p-2">
-    <label>Enter ingredient quantity</label>
-
+        <label>Enter ingredient quantity</label>
         <input class="inputBox" name="quantity" type="text">
-        <button class="add-quantity-button" type="button" onclick="addQuantity()">+</button>
-    </div>
-    <script>
-        function addQuantity() {
-            const quantityDiv = document.createElement('div');
-            quantityDiv.classList.add('p-2');
-
-            const quantity = document.createElement('input');
-            quantity.classList.add('inputBox');
-            quantity.name = 'quantity';
-            quantity.type = 'text';
-
-            quantityDiv.appendChild(quantity);
-
-            const button = document.querySelector('.add-quantity-button');
-            button.parentNode.insertBefore(quantityDiv, button);
-        }
-    </script>
-
-    <div class="p-2">
         <label>Unit</label>
         <select class="unit-select" name="unit">
             <option value="">Select unit</option>
@@ -120,7 +77,64 @@
             <option value="POUND">POUND</option>
             <option value="PIECE">PIECE</option>
         </select>
+        <button class="add-ingredient-button" type="button" onclick="addFields()">+</button>
     </div>
+
+    <script>
+        let counter = 1;
+
+        function addFields() {
+            if (counter < 4) {
+                const container = document.getElementById("fields-container");
+
+                const ingredientDiv = document.createElement("div");
+                ingredientDiv.classList.add("p-2");
+
+                const ingredientLabel = document.createElement("label");
+                ingredientLabel.textContent = "Enter ingredient";
+                const ingredientInput = document.createElement("input");
+                ingredientInput.classList.add("inputBox");
+                ingredientInput.name = "ingredient" + counter;
+                ingredientInput.type = "text";
+
+                ingredientDiv.appendChild(ingredientLabel);
+                ingredientDiv.appendChild(ingredientInput);
+
+                const quantityLabel = document.createElement("label");
+                quantityLabel.textContent = "Enter ingredient quantity";
+                const quantityInput = document.createElement("input");
+                quantityInput.classList.add("inputBox");
+                quantityInput.name = "quantity" + counter;
+                quantityInput.type = "text";
+
+                ingredientDiv.appendChild(quantityLabel);
+                ingredientDiv.appendChild(quantityInput);
+
+                const unitLabel = document.createElement("label");
+                unitLabel.textContent = "Unit";
+                const unitSelect = document.createElement("select");
+                unitSelect.classList.add("unit-select");
+                unitSelect.name = "unit" + counter;
+
+                const unitOptions = ["Select unit", "GRAMS", "KILOGRAMS", "LITTER", "MILLILITER", "TABLESPOON", "TEASPOON", "CUP", "OUNCE", "POUND", "PIECE"];
+
+                for (let i = 0; i < unitOptions.length; i++) {
+                    const option = document.createElement("option");
+                    option.value = unitOptions[i];
+                    option.text = unitOptions[i];
+                    unitSelect.appendChild(option);
+                }
+
+                ingredientDiv.appendChild(unitLabel);
+                ingredientDiv.appendChild(unitSelect);
+
+                container.appendChild(ingredientDiv);
+
+                counter++;
+            }
+        }
+    </script>
+
 
     <div class="p-2">
         <label>Enter cooking steps</label>

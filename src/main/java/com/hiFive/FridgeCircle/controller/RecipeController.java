@@ -35,8 +35,8 @@ public class RecipeController {
     private IngredientService ingredientService;
 
     private RecipeIngredientService recipeIngredientService;
-    RecipeRepository recipeRepository;
-    Recipe recipe;
+    private RecipeRepository recipeRepository;
+    private Recipe recipe;
 
     @Autowired
     public RecipeController(RecipeService recipeService,
