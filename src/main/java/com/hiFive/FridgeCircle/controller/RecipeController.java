@@ -193,7 +193,7 @@ public class RecipeController {
             3.Create RecipeIngredients for a recipe in database and List.
             4.Create Recipe with RecipeIngredients and Tag list in database.
             ---*/
-            List<Tag> specialTags = new ArrayList<>();
+           /* List<Tag> specialTags = new ArrayList<>();
             List<RecipeIngredient> recIngrList = new ArrayList<>();
 
             Ingredient ingredient1 = new Ingredient("milk");
@@ -235,7 +235,7 @@ public class RecipeController {
                     tag1,
                     "image.jpg",
                     "/upload/");
-            this.recipeService.createRecipe(recipe1);
+            this.recipeService.createRecipe(recipe1);*/
 
 
            /*----RecipeRequest----*
