@@ -75,8 +75,8 @@ public class RecipeController {
 //    }
 
 
-    @GetMapping("/recipes/{searchString}")
-    public String searchRecipeNameTagIngredient(@PathVariable(required = false) String searchString, Model model) {
+    @GetMapping("/recipes")
+    public String searchRecipeNameTagIngredient(@RequestParam(required = false) String searchString, Model model) {
         List<Recipe> searchedRecipes = this.recipeService.findAllByString(searchString);
         System.out.println("Search results for: " + searchString);
         searchedRecipes.forEach(recipe -> System.out.println(recipe));

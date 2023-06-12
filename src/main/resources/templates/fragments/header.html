@@ -15,12 +15,12 @@
           <ul class="navbar-list">
             <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
             <li class="nav-item"><a class="nav-link" href="/recipes">Recipes</a></li>
-            <li class="nav-item"><a class="nav-link" href="/thefridge">The Fridge</a></li>
+<!--            <li class="nav-item"><a class="nav-link" href="/thefridge">The Fridge</a></li>-->
           </ul>
           <br>
 
-          <form class="searchButton" action="/index/">
-          <form class="searchButton" action="/recipes">
+
+          <form class="searchButton" method="get" th:action="@{recipes/}">
 
             <input type="textSearch" name="searchNavBar"  placeholder="Search.." >
           </form>
