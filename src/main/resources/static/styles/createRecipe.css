@@ -1,5 +1,4 @@
 
-
 .inputBox {
     border-radius: 50px;
     border-width: 1px;
@@ -79,4 +78,24 @@
 
 .add-ingredient-button {
     border-radius: 50px;
+}
+
+.recipe-list {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.recipe-options {
+    background-color: #205B28;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 auto;
+    max-width: 200px;
+}
+
+.recipe-options:hover {
+    opacity: 0.7;
 }

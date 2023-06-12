@@ -20,6 +20,7 @@
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
+    display: inline-block;
 }
 
 .create-button:hover {
@@ -34,9 +35,9 @@
     text-decoration: none;
     font-weight: bold;
     display: inline-block;
-    text-decoration: none;
 }
 
 .recipe-button:hover {
     opacity: 0.7;
 }
+

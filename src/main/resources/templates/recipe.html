@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Recipe creation page</title>
-       <link href="/styles/createRecipe.css" rel="stylesheet">
+    <link href="/styles/createRecipe.css" rel="stylesheet">
     <link href="/styles/main.css" rel="stylesheet">
+
 
 </head>
 <body>
 <header th:replace="~{fragments/header :: standard-header}"></header>
 
-<h3 class="margin-top">Recipe page</h3>
+
+<section class="entire-recipe">
+
 
 <div class="recipe-list">
-    <h2>Recipe</h2>
+
     <ul>
         <h3 th:text="${recipe.name}"></h3>
         <p>Difficulty Level: <span th:text="${recipe.difficultyLevel}"></span></p>
@@ -33,10 +36,12 @@
         <img th:src="${recipe.getUrl()}" th:alt="${recipe.getFileName()}" height="120px" />
     </ul>
 </div>
-<a th:href="${'/recipes'}"> Back to all recipes</a>
-<a th:href="${'/images/new/'+recipe.getId()}">Upload image</a>
-<a th:href="${'/updaterecipe/'+recipe.getId()}">Update</a>
-<a th:href="${'/deleterecipe/'+recipe.getId()}">Delete</a>
+<a class="recipe-options" th:href="${'/recipes'}"> Back to all recipes</a>
+<a class="recipe-options" th:href="${'/images/new/'+recipe.getId()}">Upload image</a>
+<a class="recipe-options" th:href="${'/updaterecipe/'+recipe.getId()}">Update</a>
+<a class="recipe-options" th:href="${'/deleterecipe/'+recipe.getId()}">Delete</a>
+</section>
+
 <footer th:replace="~{fragments/footer :: standard-footer}"></footer>
 </body>
 </html>
