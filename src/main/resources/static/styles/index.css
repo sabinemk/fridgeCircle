@@ -98,6 +98,7 @@ recipe suggestions section
     left: 50%;
     transform: translateX(-40%); /*Moves the tag horizontally by 40% of its own width to center it precisely.*/
     padding: 5px 10px;
+    font-weight: bold;
 }
 
 .home-recipe-image {
