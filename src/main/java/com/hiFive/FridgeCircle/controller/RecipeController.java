@@ -4,8 +4,6 @@ import com.hiFive.FridgeCircle.entity.*;
 import com.hiFive.FridgeCircle.exception.RecipeException;
 import com.hiFive.FridgeCircle.repository.RecipeRepository;
 import com.hiFive.FridgeCircle.service.*;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -178,56 +176,6 @@ public class RecipeController {
     public String handleRecipeCreation(RecipeRequest recipeRequest, Model model) {
         System.out.println(recipeRequest);
         try {
-           /*---manual creation of recipe:
-            1.Create Ingredients in database.
-            2.Create Tag in database and Tag list.
-            3.Create RecipeIngredients for a recipe in database and List.
-            4.Create Recipe with RecipeIngredients and Tag list in database.
-            ---*/
-           /* List<Tag> specialTags = new ArrayList<>();
-            List<RecipeIngredient> recIngrList = new ArrayList<>();
-
-            Ingredient ingredient1 = new Ingredient("milk");
-            Ingredient ingredient2 = new Ingredient("flour");
-            Ingredient ingredient3 = new Ingredient("water");
-            Ingredient ingredient4 = new Ingredient("egg");
-
-            Tag tag1 = new Tag("non-vegan");
-
-            this.ingredientService.createIngredient(ingredient1);
-            this.ingredientService.createIngredient(ingredient2);
-            this.ingredientService.createIngredient(ingredient3);
-            this.ingredientService.createIngredient(ingredient4);
-
-            this.tagService.createTag(tag1);
-
-            RecipeIngredient recIngr1 = new RecipeIngredient(ingredient1, 6, Unit.CUP);
-            RecipeIngredient recIngr2 = new RecipeIngredient(ingredient2, 300, Unit.GRAMS);
-            RecipeIngredient recIngr3 = new RecipeIngredient(ingredient3, 100, Unit.GRAMS);
-            RecipeIngredient recIngr4 = new RecipeIngredient(ingredient4, 3, Unit.PIECE);
-
-            recIngrList.add(recIngr1);
-            recIngrList.add(recIngr2);
-            recIngrList.add(recIngr3);
-            recIngrList.add(recIngr4);
-
-            this.recipeIngredientService.saveRecipeIngredientList(recIngrList);
-
-            Recipe recipe1 = new Recipe(
-                    "Chicken",
-                    Difficulty.EASY,
-                    10,
-                    15,
-                    9,
-                    "1. Mix" +
-                            " 2.Cook ",
-                    recIngrList,
-                    332233L,
-                    tag1,
-                    "image.jpg",
-                    "/upload/");
-            this.recipeService.createRecipe(recipe1);*/
-
 
            /*----RecipeRequest----*
 
