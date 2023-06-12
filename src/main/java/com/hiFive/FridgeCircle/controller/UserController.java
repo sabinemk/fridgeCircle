@@ -24,13 +24,17 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String showRegisterPage(){
+    public String showRegisterPage(Model model){
+        User user=new User();
+        model.addAttribute("user",user);
+        System.out.println("Controller getmapping register");
         return "register";
     }
 
     @PostMapping("/register")
     public String handleUserRegistration(User user){
         try {
+            System.out.println("Controller post mapping register "+user);
             this.userService.createUser(user);
             return "redirect:login?status=REGISTER_SUCCESS";
         } catch (Exception exception){

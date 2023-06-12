@@ -16,13 +16,13 @@
 
 <div class="entire-register">
     <div class="form-wrapper">
-        <form class="main">
+        <form class="main" th:object="${user}" method="post" action="/register">
 
             <input class="input-register" type="text" name="username" placeholder="Username" required>
 
             <input class="input-register" type="email" name="email" placeholder="Email Address" required>
 
-            <input class="input-register" type="password" name="pass1" placeholder="Password" required>
+            <input class="input-register" type="password" name="password" placeholder="Password" required>
 
             <input class="input-register" type="password" name="pass2" placeholder="Confirm Password" required>
 

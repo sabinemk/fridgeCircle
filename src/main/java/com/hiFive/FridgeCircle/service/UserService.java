@@ -17,6 +17,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
     public void createUser(User user) throws Exception {
+        System.out.println("Create user Service" + user);
         this.userRepository.save(user);
     }
 
