@@ -19,8 +19,7 @@
           </ul>
           <br>
 
-          <form class="searchButton" action="/index/">
-          <form class="searchButton" action="/recipes">
+          <form class="searchButton" method="get" th:action="@{/recipes/search}">
 
             <input type="textSearch" name="searchNavBar"  placeholder="Search.." >
           </form>

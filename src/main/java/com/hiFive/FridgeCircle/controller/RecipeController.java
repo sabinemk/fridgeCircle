@@ -50,11 +50,12 @@ public class RecipeController {
         this.tagService = tagService;
         this.ingredientService = ingredientService;
         this.recipeIngredientService = recipeIngredientService;
-        this.fileStorageServiceImplementation=fileStorageServiceImplementation;
+        this.fileStorageServiceImplementation = fileStorageServiceImplementation;
     }
 
     @GetMapping("/recipes")
     public String showAllRecipesPage(Model model) {
+
         List<Recipe> allRecipes = this.recipeService.findAll();
         System.out.println("Find  ALL result");
         allRecipes.forEach(recipe -> System.out.println(recipe));
@@ -62,23 +63,12 @@ public class RecipeController {
         return "recipes";
 
     }
-//    @GetMapping("/recipes")
-//    public String showAllRecipesPage(@RequestParam(required = false) String search, Model model) {
-//        List<Recipe> recipeList;
-//        if (search != null && !search.isEmpty()) {
-//            recipeList = (List<Recipe>) recipeService.findByNamePart(search);
-//        } else {
-//            recipeList = recipeService.findAll();
-//        }
-//        model.addAttribute("recipeList", recipeList);
-//        return "recipes";
-//    }
 
 
-    @GetMapping("/recipes/{searchString}")
-    public String searchRecipeNameTagIngredient(@PathVariable(required = false) String searchString, Model model) {
-        List<Recipe> searchedRecipes = this.recipeService.findAllByString(searchString);
-        System.out.println("Search results for: " + searchString);
+    @GetMapping("/recipes/search")
+    public String searchRecipeNameTagIngredient(@RequestParam(required = false) String searchNavBar, Model model) {
+        List<Recipe> searchedRecipes = this.recipeService.findAllByString(searchNavBar);
+        System.out.println("Search results for: " + searchNavBar);
         searchedRecipes.forEach(recipe -> System.out.println(recipe));
         model.addAttribute("recipeList", searchedRecipes);
         // search Recipe by Name by Tag by Ingredient and add to list
@@ -153,24 +143,24 @@ public class RecipeController {
     }
 
     @GetMapping("/images/new/{id}")
-    public String newImage(@PathVariable Long id,Model model){
+    public String newImage(@PathVariable Long id, Model model) {
         System.out.println("new image controller");
-        model.addAttribute("recipe",this.recipeService.getRecipeById(id));
+        model.addAttribute("recipe", this.recipeService.getRecipeById(id));
         return "upload_form";
     }
+
     @PostMapping("/images/upload/{id}")
     public String uploadImage(@PathVariable Long id, Model model,
-                              @RequestParam("file")MultipartFile file)
-    {
+                              @RequestParam("file") MultipartFile file) {
         String message = "";
 
         try {
-            Recipe recipe=this.recipeService.getRecipeById(id);
-            model.addAttribute("recipe",recipe);
+            Recipe recipe = this.recipeService.getRecipeById(id);
+            model.addAttribute("recipe", recipe);
             System.out.println("Upload images controller");
             fileStorageServiceImplementation.save(file);
             recipe.setFileName(file.getOriginalFilename());
-            recipe.setUrl(this.fileStorageServiceImplementation.getRoot().toString().substring(1)+"\\"+file.getOriginalFilename());
+            recipe.setUrl(this.fileStorageServiceImplementation.getRoot().toString().substring(1) + "\\" + file.getOriginalFilename());
             this.recipeService.updateRecipe(recipe);
             message = "Uploaded the image successfully: " + file.getOriginalFilename();
             model.addAttribute("message", message);
@@ -183,6 +173,7 @@ public class RecipeController {
 
         return "upload_form";
     }
+
     @PostMapping("/createrecipe")
     public String handleRecipeCreation(RecipeRequest recipeRequest, Model model) {
         System.out.println(recipeRequest);
@@ -278,13 +269,13 @@ public class RecipeController {
 
             model.addAttribute("status", "success");
             model.addAttribute("message", "Recipe created sucessfully!");
-            Long id=recipe2.getId();
-            return "redirect:recipe/"+id+"?status=RECIPE-CREATE_SUCCESS";
+            Long id = recipe2.getId();
+            return "redirect:recipe/" + id + "?status=RECIPE-CREATE_SUCCESS";
         } catch (Exception exception) {
             exception.printStackTrace();
 
             model.addAttribute("status", "error");
-            model.addAttribute("message", "Failed to create a recipe.."+ exception.getMessage());
+            model.addAttribute("message", "Failed to create a recipe.." + exception.getMessage());
 
             return "redirect:recipes";
         }
