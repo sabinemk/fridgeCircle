@@ -9,7 +9,7 @@
 
 
 .entire-footer {
-    position: fixed;
+    position: relative;
     background-color: #a1c29f;
     box-sizing: border-box;
     left: 0;
